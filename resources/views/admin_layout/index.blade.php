@@ -12,7 +12,8 @@
   
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="{{ asset('admin-theme/assets/css/dashlite.css?ver=3.1.2') }}">
-    <link id="skin-default" rel="stylesheet" href="{{ asset('admin-theme/assets/css/theme.css?ver=3.1.2') }}"> 
+    <link id="skin-default" rel="stylesheet" href="{{ asset('admin-theme/assets/css/theme.css?ver=3.1.2') }}">
+
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 </head>
 
@@ -32,8 +33,9 @@
                     </div>
                     <div class="nk-sidebar-brand">
                         <a href="{{ url('admin-dashboard') ?? ''}}" class="logo-link nk-sidebar-logo">
-                            <img class="logo-light logo-img" src="{{ asset('admin-theme/images/logo.png') }}" srcset="{{ asset('admin-theme/images/logo2x.png 2x') }}" alt="logo">
-                            <img class="logo-dark logo-img" src="{{ asset('admin-theme/images/logo-dark.png') }}" srcset="{{ asset('admin-theme/images/logo-dark2x.png 2x') }}" alt="logo-dark">
+                            <h2 class="text-light">RSVP</h2>
+                            <!-- <img class="logo-light logo-img" src="{{ asset('admin-theme/images/logo.png') }}" srcset="{{ asset('admin-theme/images/logo2x.png 2x') }}" alt="logo">
+                            <img class="logo-dark logo-img" src="{{ asset('admin-theme/images/logo-dark.png') }}" srcset="{{ asset('admin-theme/images/logo-dark2x.png 2x') }}" alt="logo-dark"> -->
                         </a>
                     </div>
                 </div><!-- .nk-sidebar-element -->
@@ -45,6 +47,12 @@
                                 <li class="nk-menu-heading">
                                     <a href="{{ url('admin-dashboard') ?? ''}}"><h6 class="overline-title text-primary-alt">Dashboard</h6></a>
                                 </li>
+                                 <li class="nk-menu-item ">
+                                    <a href="{{ url('admin-dashboard/events') }}" class="nk-menu-link ">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
+                                        <span class="nk-menu-text">Events</span>
+                                    </a>
+</li>
                                 <!-- <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
