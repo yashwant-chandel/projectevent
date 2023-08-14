@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\authentication\AuthenticationController;
 use App\Http\Controllers\Admin\AdminDashController;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\SectiontypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,12 @@ Route::get('/logout',[AuthenticationController::class,'logout']);
 
 
 //admin
-Route ::group(['middleware' =>['admin']],function(){
+Route::group(['middleware' =>['admin']],function(){
 Route::get('/admin-dashboard',[AdminDashController::class,'index']);
 //events
 Route::get('/admin-dashboard/events',[EventController::class,'index']);
 Route::post('/admin-dashboard/events/save',[EventController::class,'submitProc']);
+
+//sectiontype
+Route::get('/admin-dashboard/section-type',[SectiontypeController::class,'index']);
 });

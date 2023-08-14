@@ -155,7 +155,9 @@ $('#add-learn-list').click(function(e){
     $('.learn-list-section').append(html);
 });
 </script>
-
+<script>
+    ClassicEditor.create( document.querySelector( '#editor{{ $data->id }}' ) );
+</script>
 
 
 <script>

@@ -52,7 +52,13 @@
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
                                         <span class="nk-menu-text">Events</span>
                                     </a>
-</li>
+                                </li>
+                                <li class="nk-menu-item ">
+                                    <a href="{{ url('admin-dashboard/section-type') }}" class="nk-menu-link ">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
+                                        <span class="nk-menu-text">Section Type</span>
+                                    </a>
+                                </li>
                                 <!-- <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
