@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
-            $table->string('date');
-            $table->string('time');
-            $table->string('place');
-            $table->string('note');
-            $table->string('close_date');
+            $table->string('start_date')->nullable();
+            $table->string('start_time')->nullable();
+            $table->string('place')->nullable();
+            $table->string('note')->nullable();
+            $table->string('close_date')->nullable();
+            $table->string('parent_session')->nullable();
+            $table->integer('event_id');
             $table->timestamps();
         });
     }

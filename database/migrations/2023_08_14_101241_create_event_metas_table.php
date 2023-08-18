@@ -13,28 +13,21 @@ return new class extends Migration
     {
         Schema::create('event_meta', function (Blueprint $table) {
             $table->id();
+            $table->text('text_editor',5555)->nullable();
+            $table->string('right_image_with_left_text_caption')->nullable();
+            $table->string('right_image_with_left_text_image')->nullable();
+            $table->text('right_image_with_left_text_description',5555)->nullable();
+            $table->string('left_image_with_right_text_caption')->nullable();
+            $table->string('left_image_with_right_text_image')->nullable();
+            $table->text('left_image_with_right_text_description',5555)->nullable();
+            $table->string('gallery_section_images')->nullable();
+            $table->string('contact_section_address')->nullable();
+            $table->string('contact_section_contact')->nullable();
+            $table->string('contact_section_email')->nullable();
+            $table->string('contact_section_site_address')->nullable();
+            $table->text('footer_disclaimer',5555)->nullable();
             $table->integer('event_id');
             $table->integer('section_id');
-            $table->string('meta_key');
-            $table->integer('meta_value');
-            // $table->string('text_editor',2555)->nullable();
-            // $table->string('right_section_image')->nullable();
-            // $table->string('right_section_name')->nullable();
-            // $table->string('right_section_profession')->nullable();
-            // $table->string('right_section_phone')->nullable();
-            // $table->string('right_section_description',2555)->nullable();
-            // $table->string('left_section_image')->nullable();
-            // $table->string('left_section_name')->nullable();
-            // $table->string('left_section_profession')->nullable();
-            // $table->string('left_section_phone')->nullable();
-            // $table->string('left_section_description',2555)->nullable();
-            // $table->string('gallery_images')->nullable();
-            // $table->string('contact_section_address')->nullable();
-            // $table->string('contact_section_contact')->nullable();
-            // $table->string('contact_section_email')->nullable();
-            // $table->string('contact_section_site_address')->nullable();
-            // $table->string('footer_disclaimer',2555)->nullable();
-            // $table->integer('event_id');
             $table->timestamps();
         });
     }

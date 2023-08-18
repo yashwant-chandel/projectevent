@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('section_name');
+            $table->string('section_number');
+            $table->integer('event_id');
             $table->timestamps();
         });
     }

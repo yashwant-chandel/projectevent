@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\authentication\AuthenticationController;
 use App\Http\Controllers\Admin\AdminDashController;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\SectiontypeController;
 
 /*
@@ -32,7 +33,14 @@ Route::get('/admin-dashboard',[AdminDashController::class,'index']);
 //events
 Route::get('/admin-dashboard/events',[EventController::class,'index']);
 Route::post('/admin-dashboard/events/save',[EventController::class,'submitProc']);
+Route::post('/admin-dashboard/events/update',[EventController::class,'update']);
+
+Route::get('/admin-dashboard/event-list',[EventController::class,'eventlist']);
+Route::get('/admin-dashboard/edit/{slug}',[EventController::class,'edit']);
+Route::get('/admin-dashboard/event/delete/{id}',[EventController::class,'delete']);
+
 
 //sectiontype
-Route::get('/admin-dashboard/section-type',[SectiontypeController::class,'index']);
+Route::get('/admin-dashboard/section/delete/{id}',[SectionController::class,'delete']);
+Route::post('/admin-dashboard/section/update/',[SectionController::class,'update']);
 });

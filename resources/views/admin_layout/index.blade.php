@@ -88,32 +88,33 @@ ul.file-list li{
                                 <li class="nk-menu-heading">
                                     <a href="{{ url('admin-dashboard') ?? ''}}"><h6 class="overline-title text-primary-alt">Dashboard</h6></a>
                                 </li>
-                                <li class="nk-menu-item ">
+                                <!-- <li class="nk-menu-item ">
                                     <a href="{{ url('admin-dashboard/events') }}" class="nk-menu-link ">
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
                                         <span class="nk-menu-text">Events</span>
                                     </a>
-                                </li>
-                                <li class="nk-menu-item ">
+                                </li> -->
+
+                                <!-- <li class="nk-menu-item ">
                                     <a href="{{ url('admin-dashboard/section-type') }}" class="nk-menu-link ">
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
                                         <span class="nk-menu-text">Section Type</span>
                                     </a>
-                                </li>
-                                <!-- <li class="nk-menu-item has-sub">
+                                </li> -->
+                                <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
-                                        <span class="nk-menu-text">Projects</span>
+                                        <span class="nk-menu-text">Events</span>
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
-                                            <a href="html/project-card.html" class="nk-menu-link"><span class="nk-menu-text">Project Cards</span></a>
+                                            <a href="{{ url('admin-dashboard/events') }}" class="nk-menu-link"><span class="nk-menu-text">Add Event</span></a>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <a href="html/project-list.html" class="nk-menu-link"><span class="nk-menu-text">Project List</span></a>
+                                            <a href="{{ url('admin-dashboard/event-list') }}" class="nk-menu-link"><span class="nk-menu-text">Event List</span></a>
                                         </li>
                                     </ul>
-                                </li> -->
+                                </li>
                                 <!-- <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
@@ -315,7 +316,8 @@ ul.file-list li{
         </div>
     </div>
     <!-- JavaScript -->
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
     <script src="{{ asset('admin-theme/assets/js/bundle.js?ver=3.1.2')}}"></script>
     <script src="{{ asset('admin-theme/assets/js/scripts.js?ver=3.1.2') }}"></script>
     <script src="{{ asset('admin-theme/assets/js/charts/gd-default.js?ver=3.1.2') }}"></script>

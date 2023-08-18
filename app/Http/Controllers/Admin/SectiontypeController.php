@@ -8,7 +8,6 @@ class SectiontypeController extends Controller
 {
     public function index(){
         
-
         return view('Admin.sectiontype.index');
     }
 }
