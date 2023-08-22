@@ -43,4 +43,9 @@ Route::get('/admin-dashboard/event/delete/{id}',[EventController::class,'delete'
 //sectiontype
 Route::get('/admin-dashboard/section/delete/{id}',[SectionController::class,'delete']);
 Route::post('/admin-dashboard/section/update/',[SectionController::class,'update']);
+
+Route::post('/admin-dashboard/section/removeimage/',[SectionController::class,'removeimage']);
+Route::post('/admin-dashboard/section/updatesectionnumber/',[SectionController::class,'updatesectionnumber']);
+
+
 });

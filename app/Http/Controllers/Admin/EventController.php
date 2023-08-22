@@ -25,13 +25,15 @@ class EventController extends Controller
     }
     public function edit($slug){
         $event = Events::where('slug',$slug)->with('session')->first();
+        // dd($event);
         
         if(!$event){
             abort(404);
         }
-        $section = Section::where('event_id',$event->id)->with('event_data')->get();
-        
-        return view('Admin.Events.edit',compact('event','section'));
+        $section = Section::where('event_id',$event->id)->with('event_data')->orderBy('section_number','asc')->get();
+        $subsession = Session::where([['event_id',$event->id],['parent_session',$event->session['id']]])->get();
+        // dd($subsession);        
+        return view('Admin.Events.edit',compact('event','section','subsession'));
     }
     public function submitProc(Request $request){
 
@@ -77,8 +79,6 @@ class EventController extends Controller
             $single_session->close_date = $request->singlesession_close_date;
             $single_session->event_id = $events->id;
             $single_session->save();
-
-
         }else{
             $multi_session = new Session;
             $multi_session->start_date = $request->multisession_start_date;
@@ -94,6 +94,7 @@ class EventController extends Controller
                     $multi_sub_session->start_time = $request->session_start_sub_time[$i];
                     $multi_sub_session->place = $request->session_sub_place[$i];
                     $multi_sub_session->event_id = $events->id;
+                    $multi_sub_session->parent_session = $multi_session->id;
                     $multi_sub_session->save();
                 }
             }
@@ -268,14 +269,15 @@ class EventController extends Controller
                     $section4->event_id = $events->id;
                     $section4->save();
 
-                    $footer_section = new Event_Meta;
-                    $footer_section->contact_section_address = $request->address[$contact_count];
-                    $footer_section->contact_section_contact	 = $request->phone[$contact_count];
-                    $footer_section->contact_section_email = $request->email[$contact_count];
-                    $footer_section->contact_section_site_address = $request->site_address[$contact_count];
-                    $footer_section->event_id = $events->id;
-                    $footer_section->section_id = $section4->id;
-                    $footer_section->save();
+                    $contact_section = new Event_Meta;
+                    $contact_section->contact_section_address = $request->address[$contact_count];
+                    $contact_section->contact_section_contact	 = $request->phone[$contact_count];
+                    $contact_section->contact_section_email = $request->email[$contact_count];
+                    $contact_section->contact_section_site_address = $request->site_address[$contact_count];
+                    $contact_section->map_status = $request['map'.$contact_count];
+                    $contact_section->event_id = $events->id;
+                    $contact_section->section_id = $section4->id;
+                    $contact_section->save();
                     $contact_count = $contact_count+1;
                 } catch (\Throwable $th) {
                    
@@ -340,9 +342,29 @@ class EventController extends Controller
             $single_session->close_date = $request->singlesession_close_date;
             $single_session->event_id = $request->id;
             $single_session->update();
-        }elseif($request->session_type == 'mulitple'){
-            $single_session = Session::where([['event_id',$request->id],['parent_session',null]])->first();
+        }elseif($request->session_type == 'multiple'){
+            
+            $multi_session = Session::where([['event_id',$request->id],['parent_session',null]])->first();
+            $multi_session->start_date = $request->multisession_start_date;
+            $multi_session->close_date = $request->multisession_close_date;
+            $multi_session->note = $request->multisesion_note;
+            $multi_session->event_id = $event->id;
+            $multi_session->update();
+            Session::where([['event_id',$request->id],['parent_session',$multi_session->id]])->delete();
+            if($request->session_start_sub_date){
+            for ($i=0; $i < count($request->session_start_sub_date); $i++) {
+                if($request->session_start_sub_date[$i] != null && $request->session_start_sub_date[$i] != null){
+                    $multi_sub_session = new Session;
+                    $multi_sub_session->start_date = $request->session_start_sub_date[$i];
+                    $multi_sub_session->start_time = $request->session_start_sub_time[$i];
+                    $multi_sub_session->place = $request->session_sub_place[$i];
+                    $multi_sub_session->event_id = $event->id;
+                    $multi_sub_session->parent_session = $multi_session->id;
+                    $multi_sub_session->save();
+                }
+            }
         }
+    }
         return redirect('/admin-dashboard/edit/'.$event->slug)->with('successfully updated event data');
 
     }

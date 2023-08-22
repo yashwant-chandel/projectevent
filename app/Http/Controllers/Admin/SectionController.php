@@ -12,12 +12,22 @@ use App\Models\Event_Meta;
 class SectionController extends Controller
 {
     public function delete($id){
-        $deletesection = Section::find($id)->delete();
-        $deleteeventdata = Event_Meta::where('section_id',$id)->delete();
+        $deletesection = Section::find($id);
+        $event_id = $deletesection->event_id;
+        $deletesection->delete();
+        // $deleteeventdata = Event_Meta::where('section_id',$id)->delete();
+        $allsection = Section::where('event_id',$event_id)->orderBy('section_number','asc')->get();
+        
+        $num = 1; 
+        foreach($allsection as $section){
+            $update = Section::find($section->id);
+            $update->section_number = $num;
+            $update->update();
+            $num = $num+1;
+        }
         return redirect()->back()->with('success','successfully deleted section');
     }
     public function update(Request $request){
-       
        if($request->id){
         $section = Section::find($request->id);
         $section->title = $request->title;
@@ -91,9 +101,9 @@ class SectionController extends Controller
             
         }elseif($request->section_type == 'contact-section'){
             if($request->id){
-            $contact_section = $this->contact($request->id,$request->address,$request->phone,$request->email,$request->site_address);
+            $contact_section = $this->contact($request->id,$request->address,$request->phone,$request->email,$request->site_address,$request->map);
             }else{
-            $contact_section_add = $this->contact_add($section->id,$request->address,$request->phone,$request->email,$request->site_address,$request->event_id); 
+            $contact_section_add = $this->contact_add($section->id,$request->address,$request->phone,$request->email,$request->site_address,$request->event_id,$request->map); 
             }
         }elseif($request->section_type == 'disclaimer_text'){
             if($request->id){
@@ -186,17 +196,18 @@ class SectionController extends Controller
         $gallery->save();
         return true;
     }
-    public function contact($section_id,$address,$phone,$email,$site_address){
+    public function contact($section_id,$address,$phone,$email,$site_address,$map){
         $contact_section1 = Event_Meta::where('section_id',$section_id)->first();
         $contact_section1->contact_section_address = $address;
         $contact_section1->contact_section_contact = $phone;
         $contact_section1->contact_section_email = $email;
         $contact_section1->contact_section_site_address = $site_address;
+        $contact_section1->map_status = $map;
         $contact_section1->save();
         return true;
 
     }
-    public function contact_add($section_id,$address,$phone,$email,$site_address,$event_id){
+    public function contact_add($section_id,$address,$phone,$email,$site_address,$event_id,$map){
         $contact_section1 = new Event_Meta;
         $contact_section1->contact_section_address = $address;
         $contact_section1->contact_section_contact = $phone;
@@ -204,6 +215,7 @@ class SectionController extends Controller
         $contact_section1->contact_section_site_address = $site_address;
         $contact_section1->event_id = $event_id;
         $contact_section1->section_id = $section_id;
+        $contact_section1->map_status = $map;
         $contact_section1->save();
         return true;
     }
@@ -220,5 +232,30 @@ class SectionController extends Controller
         $disclamier_Text1->section_id = $section_id;
         $disclamier_Text1->save();
         return true;
+    }
+    public function removeimage(Request $request){
+        // return $request->all();
+        $imagedata = Event_Meta::where('section_id',$request->sectionid)->whereJsonContains('gallery_section_images',$request->imagename)->first();
+        $images = json_decode($imagedata->gallery_section_images);
+        $key = array_search($request->imagename,$images);
+        unset($images[$key]);
+        foreach($images as $i){
+            $imageoriginal[] = $i; 
+        }
+        $imagedata->gallery_section_images = json_encode($imageoriginal);
+        $imagedata->update();
+        return response()->json('successfully deleted images');
+    }
+    public function updatesectionnumber(Request $request){
+
+        $currentsection = Section::find($request->sectionid);
+        $prevsection = Section::where([['event_id',$currentsection->event_id],['section_number',$currentsection->section_number-1]])->first();
+        if($prevsection){
+            $prevsection->section_number = $prevsection->section_number+1;
+            $prevsection->update();
+        }
+        $currentsection->section_number = $currentsection->section_number-1;
+        $currentsection->update();
+        return response()->json('successfully updated');
     }
 }

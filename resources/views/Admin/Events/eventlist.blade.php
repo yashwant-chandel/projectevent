@@ -27,7 +27,7 @@
                                                         </th>
                                                         <th class="tb-tnx-amount is-alt">
                                                             <span class="tb-tnx-total">Event Type</span>
-                                                            <span class="tb-tnx-status d-none d-md-inline-block">Close Date</span>
+                                                            <span class="tb-tnx-status d-none d-md-inline-block">Start Time</span>
                                                         </th>
                                                         <th class="tb-tnx-action">
                                                             <span>&nbsp;</span>

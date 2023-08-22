@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('contact_section_email')->nullable();
             $table->string('contact_section_site_address')->nullable();
             $table->text('footer_disclaimer',5555)->nullable();
+            $table->integer('map_status')->nullable();
             $table->integer('event_id');
             $table->integer('section_id');
             $table->timestamps();
