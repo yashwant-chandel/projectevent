@@ -23,8 +23,8 @@ class EventController extends Controller
         
         return view('Admin.Events.eventlist',compact('events'));
     }
-    public function edit($slug){
-        $event = Events::where('slug',$slug)->with('session')->first();
+    public function edit($rsvp){
+        $event = Events::where('rsvp_code',$rsvp)->with('session')->first();
         // dd($event);
         
         if(!$event){
@@ -36,7 +36,7 @@ class EventController extends Controller
         return view('Admin.Events.edit',compact('event','section','subsession'));
     }
     public function submitProc(Request $request){
-
+      
         // echo '<pre>';
         // print_r($request->all());
         // echo '</pre>';
@@ -59,10 +59,13 @@ class EventController extends Controller
             $file1->move(public_path().'/image/', $background_image_name);
         }
         // die();
-
+      
+        $selchr = substr($request->title,0, 9);
+        $caps = strtoupper($selchr);
+       
         $events = new Events;
         $events->title = $request->title;
-        $events->slug = strtolower(str_replace(" ","-",$request->title));
+        $events->rsvp_code = str_replace(" ","-",substr_replace($request->title, $caps,0));
         $events->sub_title = $request->subtitle;
         $events->logo = $name;
         $events->logo_path = '/image/'.$name;
@@ -314,7 +317,7 @@ class EventController extends Controller
      
         $event = Events::find($request->id);
         $event->title = $request->title;
-        $event->slug = strtolower(str_replace(" ","-",$request->title));
+        // $event->slug = strtolower(str_replace(" ","-",$request->title));
         $event->sub_title = $request->subtitle;
         $event->title = $request->title;
         if($request->hasfile('file')){
@@ -365,7 +368,7 @@ class EventController extends Controller
             }
         }
     }
-        return redirect('/admin-dashboard/edit/'.$event->slug)->with('successfully updated event data');
+        return redirect('/admin-dashboard/edit/'.$event->rsvp_code)->with('successfully updated event data');
 
     }
 

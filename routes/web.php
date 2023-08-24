@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminDashController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\SectiontypeController;
+use App\Http\Controllers\Front\FrontHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ use App\Http\Controllers\Admin\SectiontypeController;
 //     return view('welcome');
 // });
 
-Route::get('/',[AuthenticationController::class,'index']);
+Route::get('/admin-login',[AuthenticationController::class,'index']);
 Route::post('/loginprocc',[AuthenticationController::class,'loginProcc']);
 Route::get('/logout',[AuthenticationController::class,'logout']);
 
@@ -49,3 +50,8 @@ Route::post('/admin-dashboard/section/updatesectionnumber/',[SectionController::
 
 
 });
+
+Route::get('/',[FrontHomeController::class,'index']);
+Route::get('/{id}',[FrontHomeController::class,'detail']);
+Route::post('/rsvpcheck',[FrontHomeController::class,'codecheck']);
+Route::post('rsvp/aptsubmit',[FrontHomeController::class,'submitproc']);

@@ -12,52 +12,13 @@
   
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="{{ asset('admin-theme/assets/css/dashlite.css?ver=3.1.2') }}">
+    <link rel="stylesheet" href="{{ asset('admin-theme/assets/css/coustome.css?ver=3.1.2') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('admin-theme/assets/css/theme.css?ver=3.1.2') }}">
     <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
 </head>
-<style>
-      .custom-file{
-  position:relative;
-  font-family:arial;
-  overflow:hidden;
-  margin-bottom:10px;
-  width: auto;
-  display: inline-block;
-  padding: 10px;
-}
-.custom-file-input{
-  position:absolute;
-  left:0;
-  top:0;
-  width:100%;
-  height:100%;
-  cursor:pointer;
-  opacity:0;
-  z-index:100;
-}
-.custom-file img{
-  display:inline-block;
-  vertical-align:middle;
-  margin-right:5px;
-}
-ul.file-list{
-  font-family:arial;
-  list-style: none;
-  padding:0;
-}
-ul.file-list li{
-  border-bottom:1px solid #ddd;
-  padding:5px;
-}
-.remove-list{
-  cursor:pointer;
-  margin-left:10px;
-}
-.nk-tb-col.tb-col-mb.destination-img {
-    width: 20%;
-}
-</style>
+
 <body class="nk-body bg-lighter npc-general has-sidebar ">
 <div class="spinner-container">
   <div class="spinner"></div>

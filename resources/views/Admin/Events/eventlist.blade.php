@@ -63,7 +63,7 @@
                                                                 <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
                                                                     <ul class="link-list-plain">
-                                                                        <li><a href="{{ url('admin-dashboard/edit/'.$ev->slug) }}">Edit</a></li>
+                                                                        <li><a href="{{ url('admin-dashboard/edit/'.$ev->rsvp_code) }}">Edit</a></li>
                                                                         <li><a link="{{ url('/admin-dashboard/event/delete/'.$ev->id) }}" class="remove">Remove</a></li>
                                                                     </ul>
                                                                 </div>

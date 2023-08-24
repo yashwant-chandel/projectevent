@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
 <script src="https://cdn.jsdelivr.net/npm/@jsuites/cropper/cropper.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@jsuites/cropper/cropper.min.css" type="text/css" />
+
 <form action="{{ url('/admin-dashboard/events/save') }}" method="post" class="eventform" id="eventform" enctype="multipart/form-data">
                                                 @csrf
                                 <div class="nk-block nk-block-lg">
@@ -50,7 +51,7 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="default"> Upload Logo</label>
                                                     <div class="cropper-div" >
-                                                        <div id="image-cropper" style="border:1px solid #ccc; margin: 5px;"></div>
+                                                        <div id="image-cropper" style="border:1px solid #ccc; margin: 5px;"><span class="upload_icon"><i class="fas fa-cloud-upload-alt"></i></span></div>
                                                         <button type="button" id="cropbutton" class="btn btn-sm btn-success">crop</button>
                                                         
                                                     </div>
@@ -208,12 +209,12 @@ $('#add-learn-list').click(function(e){
     $('.learn-list-section').append(html);
 });
 </script>
-<script>
+<!-- <script>
     ClassicEditor.create( document.querySelector( '#editor' ) );
     ClassicEditor.create( document.querySelector( '#editor-left-section' ) );
     ClassicEditor.create( document.querySelector( '#editor-right-sction' ) );
     ClassicEditor.create( document.querySelector( '#editor-text-section' ) );
-</script>
+</script> -->
 
 
 <script>
@@ -324,7 +325,7 @@ $('#editbutton').click(function(){
         text_editor = '<div class="nk-block nk-block-lg"><div class="card card-bordered card-preview p-4"><div class="card-header d-flex justify-content-between"><h4 class="text-center">Text Editor Section</h4><button type="button" section-name="text_editor" class="btn btn-link close_section"><i class="fas fa-times"></i></button></div><div class="form-group"><label class="form-label" for="default-02">Title</label><div class="form-control-wrap"><input class="form-control" name="text_editor_title[]" id="default-textarea-title"></div></div><div class="form-group"><label class="form-label" for="editor-text-section">Text Editor</label><div class="form-control-wrap"><textarea class="form-control" name="text_editor_text[]" id="editor-text-section'+x+'"></textarea></div></div></div></div>';
         right_img_section = '<div class="nk-block nk-block-lg py-4"><div class="card card-bordered card-preview p-4 "><div class="card-header d-flex justify-content-between"><h4>Right Image with left text</h4><button type="button" section-name="right_img_section" class="btn btn-link close_section"><i class="fas fa-times"></i></button></div><div class="form-group"><label class="form-label" for="default-02">Title</label><div class="form-control-wrap"><input class="form-control" name="right_section_title[]" id="right-section-title"></div></div><hr><div class="card-header"><h6>Right Image section</h6></div> <div class="col-lg-6"><div class="form-group"><label class="form-label" for="default-02">Image</label><div class="form-control-wrap"><input type="file" name="right_section_image[]" class="form-control"></div></div></div><div class="form-group"><label class="form-label" for="default-02">Caption</label><div class="form-control-wrap"><textarea class="form-control" name="right_section_caption[]" id="editor-text-section'+x+'"></textarea></div></div><div class="form-group "><hr><div class="card-header col-lg-12"><h6>Left Description Section</h6></div><label class="form-label" for="editor-right-sction">Description</label><div class="form-control-wrap"><textarea style="height:400px" class="form-control" name="right_section_description[]" id="editor-text-section1'+x+'"></textarea></div></div></div></div>';
         left_img_section = '<div class="nk-block nk-block-lg py-4"><div class="card card-bordered card-preview p-4 "><div class="card-header d-flex justify-content-between"><h4>Left Image with Right text</h4><button type="button" section-name="left_img_section" class="btn btn-link close_section"><i class="fas fa-times"></i></button></div><div class="form-group"><label class="form-label" for="default-02">Title</label><div class="form-control-wrap"><input class="form-control" name="left_section_title[]" id="left-section-title"></div></div><hr><div class="card-header"><h6>Left Image section</h6></div><div class="col-lg-6"><div class="form-group><label class="form-label" for="default-02">Image</label><div class="form-control-wrap"> <input type="file" name="left_section_image[]" class="form-control"></div></div></div><div class="form-group "><label class="form-label" for="default-02">Caption</label><div class="form-control-wrap"><textarea class="form-control" name="left_section_caption[]" id="editor-text-section'+x+'"></textarea></div></div><hr><div class="card-header col-lg-12"><h6>Right Description Section</h6></div><div class="form-group "><label class="form-label" for="editor-left-section">Description</label><div class="form-control-wrap"><textarea class="form-control" name="left_section_description[]" id="editor-text-section1'+x+'"></textarea></div></div></div></div>';
-        gallery_section = '<div class="nk-block nk-block-lg py-4"><div class="card card-bordered card-preview p-4 "><div class="card-header d-flex justify-content-between"><h4>Gallery Section</h4><button type="button" section-name="gallery_section" class="btn btn-link close_section"><i class="fas fa-times"></i></button></div><div class="col-lg-6"><div class="form-group"><label class="form-label" for="default-02">Title</label><div class="form-control-wrap"><input class="form-control" name="Gallery_section_title[]" id="gallery-section-title"></div></div><div class="form-group "><div class="custom-file"><input type="hidden" name="images_count[]" id="images_count'+x+'" class="images_count"><input type="file" class="custom-file-input" id="gallery_images'+x+'" name="gallery_images[]" multiple onchange="javascript:updateList()"><label class="custom-file-label" for="gallery_images"><img width="30" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAQlBMVEX///8AAABhYWFlZWWSkpL19fW9vb01NTXf398kJCTw8PBRUVGdnZ1dXV3m5uZ0dHR8fHzExMSMjIzU1NSxsbEhISGIc9b1AAADv0lEQVR4nO2d607jMBhEa1pa6AVaLu//qgixq2+XxmlSe+IZa85vazQjhZMCarJaGWOMMcYYc8WxdQE0m7RpXQHLNqW0bV0CyVP65ql1DRyP6YfH1kVg7P4s3LUugmKd/rJuXQXDJgVdCnWb/qVDoT6l/+lOqI/pN70JdXe1sDOhrq8GdibUzcDAroS6HRzYkVB/a7Q7oV5rtDehXms06EKoQxoNOhDqsEYDeaHmNBqICzWv0UBaqGMaDZSFOqbRQFio4xoNZIV6S6OBqFBvazSQFOoUjQaCQp2m0UBPqNM0GsgJdapGAzGhTtdoICXUORoNhIQ6T6OBjFDnajRQEepcjQYiQp2v0UBCqPdoNBAQ6n0aDeiFeq9GA3Kh3q/RgFuo92s0oBZqiUYDYqGWaTSgFWqpRgNSoZZrNKAUag2NBoxCraHRgFCodTQa0Am1lkYDMqHW02hAJdSaGg2IhFpXowGPUOtqNKARam2NBiRCra/RgEKoCI0GBELFaDRoLlSURoPWQkVpNGgsVJxGg6ZCRWo0aChUrEaDZkJFazRoJFS8RoM2QsVrNGgi1NOCA1M6LT9we3iYzPp5sPXzenrEgeDj2xjDt02S3xyq8DC48KF1rYp4oT5eqI8X6uOF+nihPl6ojxfq44X6eKE+XqiPF+rjhfp4oT5eqI8X6uOF+nihPl6ojxfq44X6eKE+XqiPF+rjhfp4oT5eqI8XLsVhsMehQjJu4bzOuB4sySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wybgew8/nq/EcPZaFb6eBx+id3ioksyzE4YUlpznwwpLTHHhhyWkOvLDkNAdeWHKaAy8sOc2BF5ac5sALS05z4IUlpznwwpLTHNRYyP2OhuH3SsxbOOc9G4uTeTdIbuESr6dahtx1d25drBrnzMJj62LVOGYWXloXq8Yls3Dfulg19pmFq8/WzSrxnBu40Kvw8ORftvfSulolXrILM99XVGPsO6HvrctV4X1k4cKvi8Mw/s/zHm4Y2VvFDx+t+xXzMT5wtXpt3bCQ11sD1X066bv1yhMnPjxA90KdcIn+oKqbm5IJ9or3xdON28Qv3tV+Gg+jn2QGedkM/5WHkc/NyIftMfaX45n5L23frM/Hy7zL0xhjjDHGEPIFcc477O4fZUsAAAAASUVORK5CYII=" /> Add Multiple images</label></div><ul id="fileList'+x+'" class="file-list"></ul></div></div></div></div>';
+        gallery_section = '<div class="nk-block nk-block-lg py-4"><div class="card card-bordered card-preview p-4 "><div class="card-header d-flex justify-content-between"><h4>Gallery Section</h4><button type="button" section-name="gallery_section" class="btn btn-link close_section"><i class="fas fa-times"></i></button></div><div class="col-lg-6"><div class="form-group"><label class="form-label" for="default-02">Title</label><div class="form-control-wrap"><input class="form-control" name="Gallery_section_title[]" id="gallery-section-title"></div></div><div class="form-group "><div class="custom-file"><input type="hidden" name="images_count[]" id="images_count'+x+'" class="images_count"><input type="file" class="custom-file-input" id="gallery_images'+x+'" name="gallery_images[]" multiple ><label class="custom-file-label" for="gallery_images'+x+'"><img width="30" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAQlBMVEX///8AAABhYWFlZWWSkpL19fW9vb01NTXf398kJCTw8PBRUVGdnZ1dXV3m5uZ0dHR8fHzExMSMjIzU1NSxsbEhISGIc9b1AAADv0lEQVR4nO2d607jMBhEa1pa6AVaLu//qgixq2+XxmlSe+IZa85vazQjhZMCarJaGWOMMcYYc8WxdQE0m7RpXQHLNqW0bV0CyVP65ql1DRyP6YfH1kVg7P4s3LUugmKd/rJuXQXDJgVdCnWb/qVDoT6l/+lOqI/pN70JdXe1sDOhrq8GdibUzcDAroS6HRzYkVB/a7Q7oV5rtDehXms06EKoQxoNOhDqsEYDeaHmNBqICzWv0UBaqGMaDZSFOqbRQFio4xoNZIV6S6OBqFBvazSQFOoUjQaCQp2m0UBPqNM0GsgJdapGAzGhTtdoICXUORoNhIQ6T6OBjFDnajRQEepcjQYiQp2v0UBCqPdoNBAQ6n0aDeiFeq9GA3Kh3q/RgFuo92s0oBZqiUYDYqGWaTSgFWqpRgNSoZZrNKAUag2NBoxCraHRgFCodTQa0Am1lkYDMqHW02hAJdSaGg2IhFpXowGPUOtqNKARam2NBiRCra/RgEKoCI0GBELFaDRoLlSURoPWQkVpNGgsVJxGg6ZCRWo0aChUrEaDZkJFazRoJFS8RoM2QsVrNGgi1NOCA1M6LT9we3iYzPp5sPXzenrEgeDj2xjDt02S3xyq8DC48KF1rYp4oT5eqI8X6uOF+nihPl6ojxfq44X6eKE+XqiPF+rjhfp4oT5eqI8X6uOF+nihPl6ojxfq44X6eKE+XqiPF+rjhfp4oT5eqI8XLsVhsMehQjJu4bzOuB4sySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wybgew8/nq/EcPZaFb6eBx+id3ioksyzE4YUlpznwwpLTHHhhyWkOvLDkNAdeWHKaAy8sOc2BF5ac5sALS05z4IUlpznwwpLTHNRYyP2OhuH3SsxbOOc9G4uTeTdIbuESr6dahtx1d25drBrnzMJj62LVOGYWXloXq8Yls3Dfulg19pmFq8/WzSrxnBu40Kvw8ORftvfSulolXrILM99XVGPsO6HvrctV4X1k4cKvi8Mw/s/zHm4Y2VvFDx+t+xXzMT5wtXpt3bCQ11sD1X066bv1yhMnPjxA90KdcIn+oKqbm5IJ9or3xdON28Qv3tV+Gg+jn2QGedkM/5WHkc/NyIftMfaX45n5L23frM/Hy7zL0xhjjDHGEPIFcc477O4fZUsAAAAASUVORK5CYII=" /> Add Multiple images</label></div><ul id="fileList'+x+'" class="file-list"></ul></div></div></div></div>';
         Contact_Section = '<div class="nk-block nk-block-lg py-4"><div class="card card-bordered card-preview p-4 "><div class="card-header d-flex justify-content-between"><h4>Contact Section</h4><button type="button" section-name="contact_section" class="btn btn-link close_section"><i class="fas fa-times"></i></button></div><div class="row"><div class="col-lg-6"><div class="form-group"><label class="form-label" for="default-02">Title</label><div class="form-control-wrap"><input class="form-control" name="contact_section_title[]" id="contact-section-title"></div></div><div class="form-group "><label class="form-label" for="default-02">Address</label><div class="form-control-wrap"><input type="text" name="address[]" class="form-control"></div></div><div class="form-group "><label class="form-label" for="default-02">Contact Number</label><div class="form-control-wrap"><input type="text" name="phone[]" class="form-control"></div></div></div><div class="col-lg-6"><div class="form-group "><label class="form-label" for="default-02">Email</label><div class="form-control-wrap"><input type="email" name="email[]" class="form-control"></div></div><div class="form-group "><label class="form-label" for="default-02">Site Address</label><div class="form-control-wrap"><input type="text" name="site_address[]" class="form-control"></div></div><div class="custom-control custom-checkbox mt-4"><input type="checkbox" class="custom-control-input" name="map'+num+'" value="1" id="customCheck1'+x+'"><label class="custom-control-label" for="customCheck1'+x+'">Map</label></div></div></div></div></div>';
         footer_section = '<div class="nk-block nk-block-lg py-4"><div class="card card-bordered card-preview p-4 "><div class="card-header d-flex justify-content-between"><h4>Footer Section</h4><button type="button" section-name="footer_section" class="btn btn-link close_section"><i class="fas fa-times"></i></button></div><div class="col-lg-6"><div class="form-group"><label class="form-label" for="default-02">Title</label><div class="form-control-wrap"><input class="form-control" name="footer_section_title[]" id="footer-section-title"></div></div><div class="form-group "><label class="form-label" for="editor">Disclaimer</label><div class="form-control-wrap"><textarea class="form-control" name="disclaimer_text[]" id="editor-text-section'+x+'"></textarea></div></div></div></div></div>';
        
@@ -343,10 +344,12 @@ $('#editbutton').click(function(){
             }else if(selectval == 'gallery_section'){
                 // $('#section_select').children('option[value="gallery_section"]').attr('disabled','');
                 $('.section_div').append('<div>'+gallery_section+'<input type="hidden" name="sections[]" value="gallery_section"></div>');
+                return true;
             }else if(selectval == 'contact_section'){
                 num = num+1;
                 // $('#section_select').children('option[value="contact_section"]').attr('disabled','');
                 $('.section_div').append('<div>'+Contact_Section+'<input type="hidden" name="sections[]" value="contact_section"></div>');
+            return true;
             }else if(selectval == 'footer_section'){
                 // $('#section_select').children('option[value="footer_section"]').attr('disabled','');
                 $('.section_div').append('<div>'+footer_section+'<input type="hidden" name="sections[]" value="footer_section"></div>');
@@ -362,6 +365,9 @@ $('#editbutton').click(function(){
             .catch(error => {
                 console.error(error);
             });
+            if(selectval == 'footer_section' || selectval == 'text_editor'){
+                return true;
+            }
            
             const editorId1 = 'editor-text-section1'+x;
             const editor1 =  ClassicEditor
@@ -375,15 +381,15 @@ $('#editbutton').click(function(){
 
 
          
-            updateList = function() {
-            var input = document.getElementById('gallery_images'+x);
-            var output = document.getElementById('fileList'+x);
-            var children = "";
-            for (var i = 0; i < input.files.length; ++i) {
-                children +=  '<li>'+ input.files.item(i).name + '<span class="remove-list" onclick="return this.parentNode.remove()">X</span>' + '</li>'
-            }
-            output.innerHTML = children;
-        }
+            // updateList = function() {
+            // var input = document.getElementById('gallery_images'+x);
+            // var output = document.getElementById('fileList'+x);
+            // var children = "";
+            // for (var i = 0; i < input.files.length; ++i) {
+            //     children +=  '<li>'+ input.files.item(i).name + '<span class="remove-list" onclick="return this.parentNode.remove()">X</span>' + '</li>'
+            // }
+        //     // output.innerHTML = children;
+        // }
     
  
             

@@ -1,0 +1,533 @@
+@media only screen and (min-width: 1600px) {
+    .container {
+      max-width: 1470px;
+    }
+  }
+  @media only screen and (max-width: 1599px) {
+    .site_header {
+      padding: 10px 0px;
+    }
+  
+    h2 {
+      font-size: 32px !important;
+    }
+  
+    .banner-content {
+      padding-top: 100px;
+    }
+  
+    h1 {
+      font-size: 45px;
+      font-weight: 400;
+      padding: 10px 0px 20px;
+      line-height: 1.2;
+    }
+  
+    .seminar-info {
+      padding-top: 50px;
+    }
+  
+    .banner-content .register-form {
+      padding: 40px;
+    }
+  
+    .banner-content .event_time-block .list-group {
+      gap: 10px;
+    }
+  
+    .banner-content .event_time-block .list-group li p {
+      font-size: 14px;
+    }
+  
+  .editor-content  ul li {
+      font-size: 20px;
+      padding-bottom: 50px;
+    }
+  
+    .gallery-content button.slide-arrow {
+      height: 40px;
+      width: 40px;
+    }
+    .contact_cotent .con_icon {
+      width: 70px;
+      height: 70px;
+    }
+    .scroll-btn {
+      width: 48px;
+      height: 48px;
+    }
+    .contact_cotent .con_icon i {
+      font-size: 30px;
+    }
+    .about-block {
+      position: relative;
+      padding: 100px 50px 40px 100px;
+      margin: 80px 0px 0px -100px;
+    }
+    .about-content .peter {
+      bottom: -100px;
+  }
+    .py_50 {
+      padding: 70px 0px;
+    }
+    .gallery-content button.slide-arrow.next-arrow.slick-arrow {
+      right: -30px;
+    }
+  
+    .gallery-content button.slide-arrow.prev-arrow.slick-arrow {
+      left: -30px;
+    }
+    .site_header .nav-link {
+      font-size: 16px;
+  }
+  .about-heading {
+    padding-left: 20px;
+  }
+  }
+  
+  
+  @media only screen and (max-width: 1199px) {
+    .banner-content .register-form:after {
+      right: -25px;
+    }
+    h2 {
+      font-size: 30px !important;
+    }
+  
+    .banner-content .register-form {
+      padding: 35px;
+    }
+  
+    .banner-content .register-form form {
+      padding: 50px 0px 20px;
+    }
+    .contact_cotent .con_icon {
+      height: 60px;
+      width: 60px;
+    }
+    .gallery-content button.slide-arrow {
+      height: 32px;
+      width: 32px;
+    }
+    .py_50 {
+      padding: 60px 0px;
+    }
+    .editor-content ul li {
+      font-size: 18px;
+    }
+    .contact_cotent .sup_link p,
+    .sup_link a {
+      font-size: 15px;
+    }
+    .contact_cotent li {
+      gap: 15px;
+    }
+    .about-block {
+      position: relative;
+      padding: 70px 50px 40px 80px;
+      margin: 50px 0px 0px -80px;
+    }
+    .about-block p {
+      font-size: 16px;
+    }
+    .banner-content .event_time-block .list-group {
+      gap: 8px;
+    }
+    .banner-content .register-form {
+      padding: 20px;
+    }
+    .banner-content .event_time-block li.list-group-item {
+      padding: 10px 5px;
+    }
+    .slick-initialized .slick-slide.gallery {
+      padding: 0px 10px;
+    }
+    .gallery-content button.slide-arrow.next-arrow.slick-arrow {
+      right: -23px;
+    }
+  
+    .gallery-content button.slide-arrow.prev-arrow.slick-arrow {
+      left: -23px;
+    }
+    .editor-content .banner-para {
+      padding: 50px 0px;
+    }
+    .pl-200 {
+      padding-left: 40px;
+    }
+    .editor-content ul {
+      gap: 0px 50px;
+  }
+  .about-content .peter {
+    bottom: 10px;
+  }
+  .about-content .card .body {
+    max-width: 300px;
+  }
+  
+  .about-content .card .body h3 {
+    font-size: 20px;
+  }
+  .about-content .profile-block:after {
+    left: 0px;
+    bottom: 0;
+  }
+  }
+  @media only screen and (max-width: 991px) {
+    .form-sec .rsvpcode {
+      max-width: 100%;
+      padding: 0px 50px;
+    }
+    .banner-content .register-form {
+      margin-top: 50px;
+    }
+  
+    .banner-content {
+      padding-top: 80px;
+    }
+  
+    .seminar-info {
+      padding: 0px;
+    }
+  
+    .banner-content .time-block {
+      height: 130px;
+      width: 172px;
+    }
+  
+    .banner-content .date {
+      gap: 25px;
+    }
+  
+    .banner-content .seminar-info .date p {
+      font-size: 20px;
+    }
+  
+    .banner-content .register-form {
+      padding: 40px;
+    }
+  
+  .editor-content  p {
+      font-size: 14px;
+    }
+  
+    .editor-content ul li {
+      font-size: 14px;
+      padding-bottom: 30px;
+    }
+  
+    .pl-200 {
+      padding-left: 40px;
+    }
+  
+    .about-block p {
+      font-size: 13px;
+    }
+  
+    .about-block {
+      position: relative;
+      padding: 25px 25px 30px 65px;
+      margin: 20px 0px 0px -64px;
+    }
+  
+    .about-content .profile-block:after {
+      display: none;
+    }
+  
+    .about-content .peter {
+      width: 200px;
+    }
+  
+    .about-content .peter h3,
+    .about-content .peter a {
+      font-size: 15px;
+    }
+    .banner-content .event_time-block .list-group {
+      gap: 30px;
+    }
+    .banner-content .event_time-block li.list-group-item {
+      padding: 20px;
+    }
+  
+    .map-block {
+      padding-top: 30px;
+    }
+    .contact-content {
+      padding: 0px;
+    }
+    .bottom-content p {
+      font-size: 14px;
+    }
+    .py_50 {
+      padding: 30px 0px;
+    }
+    .gallery-content button.slide-arrow.next-arrow.slick-arrow {
+      right: -30px;
+    }
+  
+    .gallery-content button.slide-arrow.prev-arrow.slick-arrow {
+      left: -30px;
+    }
+    .banner-content .register-form {
+      padding: 30px;
+    }
+    .banner-content .req-btn {
+      padding-top: 30px;
+    }
+    .banner-content .note-block {
+      padding: 40px 0px;
+    }
+    .cta {
+      padding: 15px;
+    }
+    .contact_cotent .list-unstyled {
+      padding-top: 30px;
+    }
+    .contact_cotent .con_icon i {
+      font-size: 22px;
+    }
+    .contact_cotent .con_icon {
+      height: 50px;
+      width: 50px;
+    }
+    .contact_cotent li {
+      padding-bottom: 30px;
+    }
+    .about-heading h6,
+    .gallery-content h6,
+    .contact_cotent h6 {
+      font-size: 14px;
+    }
+    .gallery-content .gallery-head {
+      padding-bottom: 30px;
+    }
+    .navbar-nav {
+      padding: 20px 0px;
+  }
+    .editor-content ul {
+      gap: 0px 30px;
+  }
+  .about-content .peter {
+    bottom: -5px;
+  }
+  .about-content .card .body a {
+    font-size: 14px;
+  }
+  .about-content .card .body {
+    max-width: 210px;
+  }
+  .about-content .card .body h3 {
+    font-size: 17px;
+  }
+  .site_header .navbar-nav {
+    gap: 20px;
+  }
+  .editor-content ul {
+    margin-top: 40px;
+  }
+  }
+  @media only screen and (max-width: 767px) {
+    .form-sec form {
+      padding: 50px 70px;
+    }
+    .form-sec form .input-block input::placeholder {
+      font-size: 14px;
+    }
+    .gallery-content button.slide-arrow {
+      display: none !important;
+    }
+    .contact_cotent .con_icon {
+      height: 50px;
+      width: 50px;
+    }
+  
+    .contact_cotent .con_icon i {
+      font-size: 25px;
+    }
+  
+    .about-block:after {
+      display: none;
+    }
+  
+    .about-heading {
+      padding-top: 80px;
+    }
+  
+    .about-content .peter {
+      right: 12px;
+      bottom: -75px;
+    }
+  
+    .about-content .peter {
+      width: 160px;
+    }
+  
+    .pl-200 {
+      padding-left: 10px;
+    }
+  
+    h1 {
+      font-size: 40px;
+    }
+  
+    .banner-content .event_time-block .list-group {
+      gap: 14px;
+    }
+  
+    .banner-content .event_time-block li.list-group-item {
+      padding: 10px 5px;
+    }
+  
+    .banner-content .note-block {
+      padding: 30px 0px;
+    }
+  
+    .about-block {
+      padding: 25px 25px 0px 0px;
+      margin: 0px;
+    }
+  
+    .bottom-content p {
+      font-size: 12px;
+    }
+  
+    .copyright-block p,
+    .copyright-block a {
+      font-size: 12px;
+    }
+  
+    .scrollToTop {
+      font-size: 15px;
+    }
+  
+    .scroll-btn {
+      height: 40px;
+      width: 40px;
+    }
+  
+  .editor-content .banner-para {
+      padding: 60px 0px 70px;
+    }
+    .banner-content .register-form:after {
+      display: none;
+    }
+    .banner-content {
+      padding-top: 50px;
+    }
+    .banner-content .seminar-info .date p {
+      font-size: 16px;
+    }
+    .editor-content ul {
+      display: block;
+      padding: 0px;
+  }
+  .about-content .card .body {
+    max-width: 100%;
+  }
+  .about-heading {
+    padding-left: 0px;
+  }
+  }
+  @media only screen and (max-width: 575px) {
+    .form-sec form {
+      padding: 40px 20px;
+    }
+  
+    .form-sec .rsvpcode {
+      padding: 0px 15px;
+    }
+  
+    .cta {
+      padding: 15px 20px;
+      font-size: 14px;
+    }
+  
+    h3 {
+      font-size: 20px;
+    }
+    .banner-content {
+      padding-top: 50px;
+    }
+  
+    .seminar-info p {
+      font-size: 12px !important;
+    }
+  
+    h1 {
+      font-size: 32px;
+    }
+  
+    .banner-content .date {
+      display: block;
+    }
+  
+    .banner-content .time-block {
+      height: 100%;
+      width: 130px;
+      text-align: center;
+      margin: 0px 0px 20px;
+    }
+    .banner-content .register-form {
+      padding: 25px;
+    }
+  
+    h2 {
+      font-size: 25px !important;
+    }
+  
+    .banner-content .register-form .input-block {
+      margin-bottom: 20px;
+    }
+  
+    .banner-content .event_time-block .list-group {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    .banner-content .event_time-block li.list-group-item {
+      padding: 15px 10px;
+      text-align: center;
+    }
+  
+    form .input-block input::placeholder {
+      color: #727272;
+      font-size: 14px;
+      font-weight: 400;
+    }
+    .banner-content .req-btn {
+      padding-top: 35px;
+    }
+  
+    .banner-content .register-form {
+      padding: 25px;
+    }
+  
+    .banner-content .register-form .input-block {
+      margin-bottom: 20px;
+    }
+  
+    .banner-content .seminar-info .date p {
+      font-size: 15px;
+    }
+  
+    .banner-content .time-block h3 {
+      font-size: 17px;
+    }
+  
+    .banner-content .time-block h2 {
+      font-size: 12px;
+    }
+  .editor-content .banner-para {
+      padding: 50px 0px;
+    }
+    .editor-content ul li {
+      font-size: 14px;
+      padding-bottom: 20px;
+    }
+    .navbar-toggler .bar {
+      width: 25px;
+  }
+  .scroll-btn {
+      margin-right: 0px;
+  }
+  }

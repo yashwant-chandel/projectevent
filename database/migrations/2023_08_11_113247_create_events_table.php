@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug');
+            $table->string('rsvp_code');
             $table->string('sub_title');
             $table->string('logo');
             $table->string('logo_path');
             $table->string('background_image');
             $table->string('session_type');
-            $table->integer('event_id');
             $table->integer('status')->default(1);
             $table->timestamps();
         });
