@@ -25,6 +25,7 @@
                                                                 </span>
                                                             </span>
                                                         </th>
+                                                        <th class="tb-tnx-id"><span class="">RSVP Code</span></th>
                                                         <th class="tb-tnx-amount is-alt">
                                                             <span class="tb-tnx-total">Event Type</span>
                                                             <span class="tb-tnx-status d-none d-md-inline-block">Start Time</span>
@@ -50,6 +51,9 @@
                                                                 <span class="date">{{ $ev->session['close_date'] ?? '' }}</span>
                                                             </div>
                                                         </td>
+                                                        <td class="tb-tnx-id">
+                                                            <a href="{{ url($ev->rsvp_code) }}" target=”_blank” ><span>{{ $ev->rsvp_code ?? '' }}</span></a>
+                                                        </td>
                                                         <td class="tb-tnx-amount is-alt">
                                                             <div class="tb-tnx-total">
                                                                 <span class="amount">{{ $ev->session_type ?? '' }}</span>
@@ -64,6 +68,7 @@
                                                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
                                                                     <ul class="link-list-plain">
                                                                         <li><a href="{{ url('admin-dashboard/edit/'.$ev->rsvp_code) }}">Edit</a></li>
+                                                                        <li><a href="{{ url('admin-dashboard/view/'.$ev->rsvp_code) }}">Register list</a></li>
                                                                         <li><a link="{{ url('/admin-dashboard/event/delete/'.$ev->id) }}" class="remove">Remove</a></li>
                                                                     </ul>
                                                                 </div>

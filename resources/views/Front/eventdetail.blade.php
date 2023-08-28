@@ -66,13 +66,13 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
-                  <?php $i = true; ?>
+                  <?php $i = 0; ?>
                   @foreach($section as $s)
-                  <li class="nav-item @if($i == true) active @endif">
+                  <li class="nav-item @if($i == 0) active @endif">
                     <a class="nav-link" aria-current="page" href="#{{ $s->slug ?? '' }}"
                       >{{ $s->title ?? '' }}</a>
                   </li>
-                  <?php $i = false; ?>
+                  <?php $i++; ?>
                   @endforeach
                 </ul>
               </div>
@@ -81,7 +81,7 @@
         </div>
       </div>
     </header>
-<form action="{{ url('rsvp/aptsubmit') }}" method="post">
+<form action="{{ url('rsvp/aptsubmit') }}" method="post" id="userregister">
   @csrf
     <section
       class="banner-sec">
@@ -114,33 +114,53 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="input-block">
+                        <input type="hidden" name="event_id" value="{{ $events->id ?? '' }}">
                         <input type="text" name="first_name" id="" placeholder="First Name"/>
                       </div>
+                      @if ($errors->has('first_name'))
+                          <span class="text-danger">{{ $errors->first('first_name') }}</span>
+                      @endif
                     </div>
                     <div class="col-md-6">
                       <div class="input-block">
                         <input type="text" name="last_name" id="" placeholder="Last Name" />
                       </div>
+                      @if ($errors->has('last_name'))
+                          <span class="text-danger">{{ $errors->first('last_name') }}</span>
+                      @endif
                     </div>
                     <div class="col-md-12">
                       <div class="input-block">
                         <input type="text" name="mobile_phone" id="" placeholder="Mobile Phone"/>
                       </div>
+                      @if ($errors->has('mobile_phone'))
+                          <span class="text-danger">{{ $errors->first('mobile_phone') }}</span>
+                      @endif
                     </div>
                     <div class="col-md-12">
                       <div class="input-block">
                         <input type="email" name="email" id="" placeholder="Email"/>
                       </div>
+                      @if ($errors->has('email'))
+                          <span class="text-danger">{{ $errors->first('email') }}</span>
+                      @endif
                     </div>
                     <div class="col-md-6">
                       <div class="input-block">
                         <input type="text" name="address" id="" placeholder="Address"/>
                       </div>
+                      @if ($errors->has('address'))
+                          <span class="text-danger">{{ $errors->first('address') }}</span>
+                      @endif
                     </div>
                     <div class="col-md-6">
                       <div class="input-block">
                         <input type="text" name="apt" id="" placeholder="Apt"/>
+                        @if ($errors->has('apt'))
+                          <span class="text-danger">{{ $errors->first('apt') }}</span>
+                      @endif
                       </div>
+                  
                     </div>
                   </div>
                 </form>
@@ -153,20 +173,26 @@
                           $date = date('d M, Y',strtotime($events->session['start_date'])); 
                           $event_time = date('H:i A',strtotime($events->session['start_time']));
                           ?>
+                          <label for="multievent{{ $events->session['id'] ?? '' }}">
                             <li class="list-group-item">
                                 <p><?php print_r($date);  ?></p>
                                 <i class="fa-regular fa-clock"></i><span><?php print_r($event_time); ?></span> 
                             </li>
+                            </label>
+                            <input type="radio" class="d-none" name="event_date" id="multievent{{ $events->session['id'] ?? '' }}" value="{{ $events->session['id'] ?? '' }}">
                             @else
                             @foreach($multiple_session as $ms)
                             <?php 
                             $multidate = date('d M, Y',strtotime($ms['start_date'])); 
                             $multievent_time = date('H:i A',strtotime($ms['start_time']));
                             ?>
+                          <label for="multievent{{ $ms->id ?? '' }}">
                             <li class="list-group-item">
                                 <p><?php echo $multidate; ?></p>
                                 <i class="fa-regular fa-clock"></i><span><?php echo $multievent_time; ?></span> 
                             </li>
+                            </label>
+                            <input type="radio" class="d-none" name="event_date" id="multievent{{ $ms->id ?? '' }}" value="{{ $ms->id ?? '' }}">
                             @endforeach
                             @endif
                           </ul>               
@@ -372,7 +398,7 @@
                               <i class="fa-solid fa-globe"></i>
                             </div>
                             <div class="sup_link">
-                               <a href="{{ $sec->event_data['contact_section_site_address'] ?? '' }}">{{ $sec->event_data['contact_section_site_address'] ?? '' }}</a>
+                               <a href="//{{ $sec->event_data['contact_section_site_address'] ?? '' }}">{{ $sec->event_data['contact_section_site_address'] ?? '' }}</a>
                             </div>
                         </li>
                       </ul>
@@ -401,12 +427,23 @@
  </section>
  @endif
  @endforeach
+
  <section class="copyright-sec">
   <div class="copyright-block">
     <p>By submitting your registration, you agree to our </p>  <a href="javascript:void(0)">Privacy Policy.</a>
   </div>
  </section>
- 
+<script>
+  $('#userregister').on('submit',function(e){
+    e.preventDefault();
+    formData = new FormData(this);
+    if($('#defaultCheck1').is(':checked')){
+      $(this).submit();
+    }else{
+   return false;
+    }
+  });
+</script>
 <script>
   $(document).ready(function () {
     i = 0;
@@ -417,7 +454,6 @@
     });
   });
 </script>
-
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -425,5 +461,22 @@
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('front/js/script.js') }}"></script>
+
+    <script src="{{ asset('admin-theme/assets/js/bundle.js') }}"></script>
+    <script src="{{ asset('admin-theme/assets/js/scripts.js') }}"></script>
+    <script src="{{ asset('admin-theme/assets/js/example-toastr.js?ver=3.1.2') }}"></script>
+    @if(Session::get('error'))
+<script>
+    toastr.clear();
+    NioApp.Toast('{{ Session::get("error") }}', 'error', {position: 'top-right'});
+</script>
+@endif
+@if(Session::get('success'))
+<script>
+  alert('{{ Session::get("success") }}');
+    toastr.clear();
+     NioApp.Toast('{{ Session::get("success") }}', 'info', {position: 'top-right'});
+</script>
+@endif   
   </body>
 </html>

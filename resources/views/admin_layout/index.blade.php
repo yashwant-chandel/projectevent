@@ -16,7 +16,6 @@
     <link id="skin-default" rel="stylesheet" href="{{ asset('admin-theme/assets/css/theme.css?ver=3.1.2') }}">
     <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-
 </head>
 
 <body class="nk-body bg-lighter npc-general has-sidebar ">
@@ -169,7 +168,7 @@
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
                                                     <!-- <li><a href="html/user-profile-regular.html"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li> -->
-                                                    <li><a href="{{url('admin-dashboard/update-token') ?? ''}}"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
+                                                    <li><a href="{{url('admin-dashboard/change-password') ?? ''}}"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
                                                     <!-- <li><a href="html/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li> -->
                                                     <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
                                                 </ul>
@@ -267,7 +266,7 @@
                 <div class="nk-footer">
                     <div class="container-fluid">
                         <div class="nk-footer-wrap">
-                            <div class="nk-footer-copyright"> &copy; 2023 by <a href="{{ url('admin-dashboard') ?? ''}}" target="_blank">eliteserenevillas</a>
+                            <div class="nk-footer-copyright"> &copy; 2023 by <a href="{{ url('admin-dashboard') ?? ''}}" target="_blank">rsvp</a>
                             </div>
                         </div>
                     </div>

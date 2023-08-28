@@ -17,23 +17,14 @@
                                         <div class="card card-bordered card-preview p-4">
                                       
                                             <div class="row gy-4">
-                                             <div class="col-lg-6">
+                                             <div class="col-lg-8">
                                                 <div class="form-group">
-                                                    <label class="form-label" for="default-01">Event Title</label>
+                                                    <label class="form-label" for="title">Event Title</label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" class="form-control" id="default-01" name="title" placeholder="Event Title">
+                                                        <input type="text" class="form-control" id="title" name="title" placeholder="Event Title">
                                                     <input type="file" id="imageInput" name="file" class="d-none"></div>
                                                     @if ($errors->has('title'))
                                                         <span class="text-danger">{{ $errors->first('title') }}</span>
-                                                    @endif
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="form-label" for="default-01">Event Description</label>
-                                                    <div class="form-control-wrap">
-                                                        <input type="text" class="form-control" id="default-01" name="subtitle" placeholder="Event Sub Title">
-                                                     </div>
-                                                    @if ($errors->has('subtitle'))
-                                                        <span class="text-danger">{{ $errors->first('subtitle') }}</span>
                                                     @endif
                                                 </div>
                                                 <div class="form-group">
@@ -45,9 +36,18 @@
                                                         <span class="text-danger">{{ $errors->first('background_image') }}</span>
                                                     @endif
                                                 </div>
+                                                <div class="form-group">
+                                                    <label class="form-label" for="default-01">Event Description</label>
+                                                    <div class="form-control-wrap">
+                                                        <textarea name="subtitle" id="editor10" cols="30" rows="10"></textarea>
+                                                    </div>
+                                                    @if ($errors->has('subtitle'))
+                                                        <span class="text-danger">{{ $errors->first('subtitle') }}</span>
+                                                    @endif
+                                                </div>
                                                 
                                         </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <label class="form-label" for="default"> Upload Logo</label>
                                                     <div class="cropper-div" >
@@ -94,20 +94,23 @@
                                                                             <input type="date" name="multisession_start_date" class="form-control" id="session_start_date">
                                                                         </div> 
                                                             </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
                                                             <div class="form-group">
                                                                     <label class="form-label" for="session_close_date">Close Date</label>
                                                                         <div class="form-control-wrap">
                                                                             <input type="date" name="multisession_close_date" class="form-control" id="session_close_date">
                                                                         </div> 
                                                                 </div>
-                                                                </div>
-                                                                <div class="col-lg-6">
-                                                                <div class="form-group">
+                                                        </div>
+                                                                <div class="col-lg-12">
+                                                                     <div class="form-group">
                                                                     <label class="form-label" for="note">Note</label>
                                                                     <div class="form-control-wrap">
-                                                                    <textarea class="form-control" name="multisesion_note" id="note"></textarea>
+                                                                    <textarea class="form-control" name="multisesion_note" id="editor11"></textarea>
                                                                     </div> 
-                                                                </div>
+                                                            </div>
+                                                                
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -128,12 +131,6 @@
                                                                             <input type="time" name="singlesession_start_time" class="form-control" id="session_start_time">
                                                                         </div> 
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <label class="form-label" for="session_place">Place</label>
-                                                                        <div class="form-control-wrap">
-                                                                            <input type="text" name="singlesession_place" class="form-control" id="session_place">
-                                                                        </div> 
-                                                                </div>
                                                                 </div>
                                                                 <div class="col-lg-6 ">
                                                                 <div class="form-group">
@@ -143,11 +140,18 @@
                                                                         </div> 
                                                                 </div>
                                                                 <div class="form-group">
+                                                                    <label class="form-label" for="session_place">Place</label>
+                                                                        <div class="form-control-wrap">
+                                                                            <input type="text" name="singlesession_place" class="form-control" id="session_place">
+                                                                        </div> 
+                                                                </div>
+                                                                
+                                                                </div>
+                                                                <div class="form-group">
                                                                     <label class="form-label" for="note">Note</label>
                                                                     <div class="form-control-wrap">
-                                                                    <textarea class="form-control" name="singlesession_note" id="note"></textarea>
+                                                                    <textarea class="form-control" name="singlesession_note" id="editor12"></textarea>
                                                                     </div> 
-                                                                </div>
                                                                 </div>
                                                              </div>
                                                 </div>
@@ -209,12 +213,12 @@ $('#add-learn-list').click(function(e){
     $('.learn-list-section').append(html);
 });
 </script>
-<!-- <script>
-    ClassicEditor.create( document.querySelector( '#editor' ) );
-    ClassicEditor.create( document.querySelector( '#editor-left-section' ) );
-    ClassicEditor.create( document.querySelector( '#editor-right-sction' ) );
-    ClassicEditor.create( document.querySelector( '#editor-text-section' ) );
-</script> -->
+ <script>
+    ClassicEditor.create( document.querySelector( '#editor10' ) ); 
+   ClassicEditor.create( document.querySelector( '#editor11' ) );
+    ClassicEditor.create( document.querySelector( '#editor12' ) );
+    // ClassicEditor.create( document.querySelector( '#editor-text-section' ) ); 
+</script>
 
 
 <script>
@@ -415,5 +419,13 @@ $('#editbutton').click(function(){
     });
 })
   </script>  
+  <script>
+    $(document).ready(function(){
+        $('#title').on('keyup',function(){
+           value = $(this).val();
+
+        });
+    });
+  </script>
         
 @endsection

@@ -8,6 +8,9 @@ use App\Models\Events;
 use App\Models\Session;
 use App\Models\Section;
 use App\Models\Event_Meta;
+use App\Models\Registeruser;
+use App\Mail\userregistermail;
+use Illuminate\Support\Facades\Mail;
 
 class FrontHomeController extends Controller
 {
@@ -39,8 +42,47 @@ class FrontHomeController extends Controller
 
    }
    public function submitproc(Request $request){
-    echo '<pre>';
-    print_r($request->all());
-    echo '</pre>';
-   }
+    // echo '<pre>';
+    // print_r($request->all());
+    // echo '</pre>';
+    // print_r($request->guest_first_name);
+    // print_r($request->guest_last_name);
+    
+    $request->validate([
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'mobile_phone' => 'required',
+        'email' => 'required',
+        'address' => 'required',
+        'apt' => 'required',
+    ]);
+    $fullname = array();
+    for ($i=0; $i < count($request->guest_first_name); $i++) { 
+        array_push($fullname,$request->guest_first_name[$i].' ' .$request->guest_last_name[$i]);
+    }
+    $events = Events::find($request->event_id);
+    $registeruser = new Registeruser();
+    $registeruser->first_name = $request->first_name;
+    $registeruser->last_name = $request->last_name;
+    $registeruser->mobile_number = $request->mobile_phone;
+    $registeruser->email = $request->email;
+    $registeruser->address = $request->address;
+    $registeruser->event_date = $request->event_date;
+    $registeruser->guests = json_encode($fullname);
+    $registeruser->apt = $request->apt;
+    $registeruser->note = $request->note;
+    $registeruser->event_id = $request->event_id;
+    $registeruser->save();
+    $mailData = [
+        'fullname' => $request->first_name.' '.$request->last_name,
+        'email' => $request->email,
+        'event_data' => $events,
+
+    ];
+
+    $mail = Mail::to($request->email)->send(new userregistermail($mailData));
+
+    return redirect()->back()->with(['success'=>'user registered successfully']);
+    
+}
 }

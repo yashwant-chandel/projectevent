@@ -62,9 +62,18 @@
                     data: { code:rsvp_code,_token: '{{ csrf_token() }}' },
                     dataType: 'json',
                     success: function(response){
-                        console.log(response);
                        if(response == 'error'){
-                        console.log('done');
+                        Swal.fire({
+                                        title: 'Error!',
+                                        text: 'This code is not valid ,Please enter valid code',
+                                        icon: "info",
+                                        showCancelButton: false,
+                                        confirmButtonText: 'ok',
+                                        confirmButtonColor: 'red',
+                                        cancelButtonText: 'no',
+                                        cancelButtonColor: '#d33',
+                                        })
+
                        }else{
                         location.href = response;
                        }
@@ -74,8 +83,9 @@
             })
         })
     </script>
+                                    </script>
 
-   
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

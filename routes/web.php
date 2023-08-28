@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\SectiontypeController;
 use App\Http\Controllers\Front\FrontHomeController;
+use App\Http\Controllers\Admin\AccountSettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +39,12 @@ Route::post('/admin-dashboard/events/update',[EventController::class,'update']);
 
 Route::get('/admin-dashboard/event-list',[EventController::class,'eventlist']);
 Route::get('/admin-dashboard/edit/{slug}',[EventController::class,'edit']);
+Route::get('/admin-dashboard/view/{slug}',[EventController::class,'registerlist']);
 Route::get('/admin-dashboard/event/delete/{id}',[EventController::class,'delete']);
+
+//accountsetting
+Route::get('/admin-dashboard/change-password',[AccountSettingController::class,'index']);
+Route::post('/admin-dashboard/change-password/submitprocc',[AccountSettingController::class,'changepassword']);
 
 
 //sectiontype

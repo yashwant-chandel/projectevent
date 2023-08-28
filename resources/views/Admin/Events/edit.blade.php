@@ -18,7 +18,7 @@
                                         <div class="card card-bordered card-preview p-4">
                                       
                                             <div class="row gy-4">
-                                             <div class="col-lg-6">
+                                             <div class="col-lg-8">
                                                 <div class="form-group">
                                                     <label class="form-label" for="default-01">Event Title</label>
                                                     <div class="form-control-wrap">
@@ -26,21 +26,24 @@
                                                     <input type="file" id="imageInput" name="file" class="d-none"></div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="form-label" for="default-01">Event Description</label>
-                                                    <div class="form-control-wrap">
-                                                        <textarea name="subtitle" id="editor" cols="30" rows="10">{{ $event->sub_title ?? '' }}</textarea>
-                                                     </div>
-                                                </div>
-                                                <div class="form-group">
                                                     <label class="form-label" for="default-01">Background image</label>
                                                     <div class="form-control-wrap">
                                                         <input type="file" class="form-control" id="background_image" name="background_image">
                                                      </div>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label class="form-label" for="default-01">Event Description</label>
+                                                    <div class="form-control-wrap">
+                                                        <textarea name="subtitle" id="editor" cols="30" rows="10">{{ $event->sub_title ?? '' }}</textarea>
+                                                     </div>
+                                                </div>
+                                               
                                                 
                                         </div>
-                                            <div class="col-lg-6 d-flex">
-                                                
+                                            <div class="col-lg-4 ">
+                                                <div class="image">
+                                                <img src="{{ asset($event->logo_path) }}" alt="" class="mt-4" height="200px">
+                                                </div>
                                                 <div class="form-group ">
                                                     <label class="form-label" for="default"> Upload Logo</label>
                                                     <div class="cropper-div" >
@@ -53,9 +56,7 @@
                                                         <button type="button" class="btn btn-success btn-sm mt-1" id="editbutton">edit</button>
                                                     </div>
                                                 </div>
-                                                <div class="image">
-                                                <img src="{{ asset($event->logo_path) }}" alt="" class="mt-4" height="200px">
-                                                </div>
+                                               
                                             </div>
                                             </div>
                                         </div>
@@ -89,6 +90,8 @@
                                                                             <input type="date" name="multisession_start_date" class="form-control" id="session_start_date" value="{{ $event->session['start_date'] ?? '' }}">
                                                                         </div> 
                                                             </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
                                                             <div class="form-group">
                                                                     <label class="form-label" for="session_close_date">Close Date</label>
                                                                         <div class="form-control-wrap">
@@ -97,13 +100,12 @@
                                                                 </div>
                                                                 
                                                                 </div>
-                                                                <div class="col-lg-6">
+                                                                
                                                                 <div class="form-group">
                                                                     <label class="form-label" for="note">Note</label>
                                                                     <div class="form-control-wrap">
                                                                     <textarea class="form-control" name="multisesion_note" id="note1">{{ $event->session['note'] ?? '' }}</textarea>
                                                                     </div> 
-                                                                </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -127,12 +129,6 @@
                                                                             <input type="time" name="singlesession_start_time" class="form-control" id="session_start_time" value="{{ $event->session['start_time'] ?? '' }}">
                                                                         </div> 
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <label class="form-label" for="session_place">Place</label>
-                                                                        <div class="form-control-wrap">
-                                                                            <input type="text" name="singlesession_place" class="form-control" id="session_place" value="{{ $event->session['place'] ?? '' }}">
-                                                                        </div> 
-                                                                </div>
                                                                
                                                                 </div>
                                                                 <div class="col-lg-6 ">
@@ -143,12 +139,17 @@
                                                                         </div> 
                                                                 </div>
                                                                 <div class="form-group">
+                                                                    <label class="form-label" for="session_place">Place</label>
+                                                                        <div class="form-control-wrap">
+                                                                            <input type="text" name="singlesession_place" class="form-control" id="session_place" value="{{ $event->session['place'] ?? '' }}">
+                                                                        </div> 
+                                                                </div>
+                                                                </div>
+                                                                <div class="form-group">
                                                                     <label class="form-label" for="note">Note</label>
                                                                     <div class="form-control-wrap">
                                                                     <textarea class="form-control" name="singlesession_note" id="note2">{{ $event->session['note'] ?? '' }}</textarea>
                                                                     </div> 
-                                                                </div>
-                                                               
                                                                 </div>
                                                              </div>
                                                              <button type="submit" class="btn btn-primary col-1 mt-3">Update</button>
@@ -187,9 +188,9 @@
                                             <div class="nk-block nk-block-lg py-4"><div class="card card-bordered card-preview p-4 "><div class="card-header d-flex justify-content-between"><h4>Left Image with Right text</h4><div><button type="button" section-name="left_img_section" link="{{ url('/admin-dashboard/section/delete/'.$section->id) }}" class="btn btn-link close_section_db"><i class="fas fa-times"></i></button>@if($i != 1)<a class="increasesection" section-id="{{ $section->id ?? '' }}" href=""><i class="fas fa-arrow-up"></i></a>@endif</div></div><div class="form-group"><input type="hidden" name="section_type" value="{{ $section->section_name ?? '' }}"><input type="hidden" name="section_number" value="{{ $section->section_number ?? '' }}"><input type="hidden" name="id" value="{{ $section->id ?? '' }}"><label class="form-label" for="default-02">Title</label><div class="form-control-wrap"><input class="form-control" name="title" id="left-section-title" value="{{ $section->title ?? '' }}"></div></div><hr><div class="card-header"><h6>Right Image section</h6></div><div class="row"><div class="col-lg-6"><div class="form-group><label class="form-label" for="default-02">Image</label><div class="form-control-wrap"> <input type="file" name="left_section_image" class="form-control" ></div></div></div><div class="col-lg-6"><img src="{{ url('/image/'.$section->event_data['left_image_with_right_text_image']) }}" alt=""></div></div><div class="form-group "><label class="form-label" for="default-02">Caption</label><div class="form-control-wrap"><textarea class="form-control" name="left_section_caption" id="editor-text-section{{ $num }}">{{ $section->event_data['left_image_with_right_text_caption'] ?? '' }}</textarea></div></div><hr><div class="card-header col-lg-12"><h6>Left Description Section</h6></div><div class="form-group "><label class="form-label" for="editor-left-section">Description</label><div class="form-control-wrap"><textarea class="form-control" name="left_section_description" id="editor-text-section{{ $counting }}">{{ $section->event_data['left_image_with_right_text_description'] ?? '' }}</textarea></div></div><button type="submit" class="btn btn-primary col-lg-1 col-sm-2">Update</button></div></div>
                                             @elseif($section->section_name == "gallery-section")
                                             
-                                            <div class="nk-block nk-block-lg py-4"><div class="card card-bordered card-preview p-4 "><div class="card-header d-flex justify-content-between"><h4>Gallery Section</h4><div><button type="button" section-name="gallery_section" link="{{ url('/admin-dashboard/section/delete/'.$section->id) }}" class="btn btn-link close_section_db"><i class="fas fa-times"></i></button>@if($i != 1)<a class="increasesection" section-id="{{ $section->id ?? '' }}" href=""><i class="fas fa-arrow-up"></i></a>@endif</div></div><div class="col-lg-6"><div class="form-group"><input type="hidden" name="section_type" value="{{ $section->section_name ?? '' }}"><input type="hidden" name="section_number" value="{{ $section->section_number ?? '' }}"><input type="hidden" name="id" value="{{ $section->id ?? '' }}"><label class="form-label" for="default-02">Title</label><div class="form-control-wrap"><input class="form-control" name="title" id="gallery-section-title" value="{{ $section->title ?? '' }}"></div></div><div class="form-group "><div class="custom-file"><input type="hidden" name="images_count[]" id="images_count'+x+'" class="images_count"><input type="file" class="custom-file-input" id="gallery_images{{ $x }}" name="gallery_images[]" multiple onchange="javascript:updateList()"><label class="custom-file-label" for="gallery_images"><img width="30" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAQlBMVEX///8AAABhYWFlZWWSkpL19fW9vb01NTXf398kJCTw8PBRUVGdnZ1dXV3m5uZ0dHR8fHzExMSMjIzU1NSxsbEhISGIc9b1AAADv0lEQVR4nO2d607jMBhEa1pa6AVaLu//qgixq2+XxmlSe+IZa85vazQjhZMCarJaGWOMMcYYc8WxdQE0m7RpXQHLNqW0bV0CyVP65ql1DRyP6YfH1kVg7P4s3LUugmKd/rJuXQXDJgVdCnWb/qVDoT6l/+lOqI/pN70JdXe1sDOhrq8GdibUzcDAroS6HRzYkVB/a7Q7oV5rtDehXms06EKoQxoNOhDqsEYDeaHmNBqICzWv0UBaqGMaDZSFOqbRQFio4xoNZIV6S6OBqFBvazSQFOoUjQaCQp2m0UBPqNM0GsgJdapGAzGhTtdoICXUORoNhIQ6T6OBjFDnajRQEepcjQYiQp2v0UBCqPdoNBAQ6n0aDeiFeq9GA3Kh3q/RgFuo92s0oBZqiUYDYqGWaTSgFWqpRgNSoZZrNKAUag2NBoxCraHRgFCodTQa0Am1lkYDMqHW02hAJdSaGg2IhFpXowGPUOtqNKARam2NBiRCra/RgEKoCI0GBELFaDRoLlSURoPWQkVpNGgsVJxGg6ZCRWo0aChUrEaDZkJFazRoJFS8RoM2QsVrNGgi1NOCA1M6LT9we3iYzPp5sPXzenrEgeDj2xjDt02S3xyq8DC48KF1rYp4oT5eqI8X6uOF+nihPl6ojxfq44X6eKE+XqiPF+rjhfp4oT5eqI8X6uOF+nihPl6ojxfq44X6eKE+XqiPF+rjhfp4oT5eqI8XLsVhsMehQjJu4bzOuB4sySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wybgew8/nq/EcPZaFb6eBx+id3ioksyzE4YUlpznwwpLTHHhhyWkOvLDkNAdeWHKaAy8sOc2BF5ac5sALS05z4IUlpznwwpLTHNRYyP2OhuH3SsxbOOc9G4uTeTdIbuESr6dahtx1d25drBrnzMJj62LVOGYWXloXq8Yls3Dfulg19pmFq8/WzSrxnBu40Kvw8ORftvfSulolXrILM99XVGPsO6HvrctV4X1k4cKvi8Mw/s/zHm4Y2VvFDx+t+xXzMT5wtXpt3bCQ11sD1X066bv1yhMnPjxA90KdcIn+oKqbm5IJ9or3xdON28Qv3tV+Gg+jn2QGedkM/5WHkc/NyIftMfaX45n5L23frM/Hy7zL0xhjjDHGEPIFcc477O4fZUsAAAAASUVORK5CYII=" /> Add Multiple images</label></div><ul id="fileList{{ $x }}" class="file-list"></ul></div></div><div class="col-lg-3 col-sm-6 d-flex justify-content-between"><button type="submit" class="btn btn-primary">Update</button><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalDefault">View Images</button></div></div></div>
+                                            <div class="nk-block nk-block-lg py-4"><div class="card card-bordered card-preview p-4 "><div class="card-header d-flex justify-content-between"><h4>Gallery Section</h4><div><button type="button" section-name="gallery_section" link="{{ url('/admin-dashboard/section/delete/'.$section->id) }}" class="btn btn-link close_section_db"><i class="fas fa-times"></i></button>@if($i != 1)<a class="increasesection" section-id="{{ $section->id ?? '' }}" href=""><i class="fas fa-arrow-up"></i></a>@endif</div></div><div class="col-lg-6"><div class="form-group"><input type="hidden" name="section_type" value="{{ $section->section_name ?? '' }}"><input type="hidden" name="section_number" value="{{ $section->section_number ?? '' }}"><input type="hidden" name="id" value="{{ $section->id ?? '' }}"><label class="form-label" for="default-02">Title</label><div class="form-control-wrap"><input class="form-control" name="title" id="gallery-section-title" value="{{ $section->title ?? '' }}"></div></div><div class="form-group "><div class="custom-file"><input type="hidden" name="images_count[]" id="images_count'+x+'" class="images_count"><input type="file" class="custom-file-input" id="gallery_images{{ $x }}" name="gallery_images[]" multiple onchange="javascript:updateList()"><label class="custom-file-label" for="gallery_images"><img width="30" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAQlBMVEX///8AAABhYWFlZWWSkpL19fW9vb01NTXf398kJCTw8PBRUVGdnZ1dXV3m5uZ0dHR8fHzExMSMjIzU1NSxsbEhISGIc9b1AAADv0lEQVR4nO2d607jMBhEa1pa6AVaLu//qgixq2+XxmlSe+IZa85vazQjhZMCarJaGWOMMcYYc8WxdQE0m7RpXQHLNqW0bV0CyVP65ql1DRyP6YfH1kVg7P4s3LUugmKd/rJuXQXDJgVdCnWb/qVDoT6l/+lOqI/pN70JdXe1sDOhrq8GdibUzcDAroS6HRzYkVB/a7Q7oV5rtDehXms06EKoQxoNOhDqsEYDeaHmNBqICzWv0UBaqGMaDZSFOqbRQFio4xoNZIV6S6OBqFBvazSQFOoUjQaCQp2m0UBPqNM0GsgJdapGAzGhTtdoICXUORoNhIQ6T6OBjFDnajRQEepcjQYiQp2v0UBCqPdoNBAQ6n0aDeiFeq9GA3Kh3q/RgFuo92s0oBZqiUYDYqGWaTSgFWqpRgNSoZZrNKAUag2NBoxCraHRgFCodTQa0Am1lkYDMqHW02hAJdSaGg2IhFpXowGPUOtqNKARam2NBiRCra/RgEKoCI0GBELFaDRoLlSURoPWQkVpNGgsVJxGg6ZCRWo0aChUrEaDZkJFazRoJFS8RoM2QsVrNGgi1NOCA1M6LT9we3iYzPp5sPXzenrEgeDj2xjDt02S3xyq8DC48KF1rYp4oT5eqI8X6uOF+nihPl6ojxfq44X6eKE+XqiPF+rjhfp4oT5eqI8X6uOF+nihPl6ojxfq44X6eKE+XqiPF+rjhfp4oT5eqI8XLsVhsMehQjJu4bzOuB4sySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wySw9cMksPXDJLD1wybgew8/nq/EcPZaFb6eBx+id3ioksyzE4YUlpznwwpLTHHhhyWkOvLDkNAdeWHKaAy8sOc2BF5ac5sALS05z4IUlpznwwpLTHNRYyP2OhuH3SsxbOOc9G4uTeTdIbuESr6dahtx1d25drBrnzMJj62LVOGYWXloXq8Yls3Dfulg19pmFq8/WzSrxnBu40Kvw8ORftvfSulolXrILM99XVGPsO6HvrctV4X1k4cKvi8Mw/s/zHm4Y2VvFDx+t+xXzMT5wtXpt3bCQ11sD1X066bv1yhMnPjxA90KdcIn+oKqbm5IJ9or3xdON28Qv3tV+Gg+jn2QGedkM/5WHkc/NyIftMfaX45n5L23frM/Hy7zL0xhjjDHGEPIFcc477O4fZUsAAAAASUVORK5CYII=" /> Add Multiple images</label></div><ul id="fileList{{ $x }}" class="file-list"></ul></div></div><div class="col-lg-3 col-sm-6 d-flex justify-content-between"><button type="submit" class="btn btn-primary">Update</button><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalDefault{{ $section->event_data['id'] }}">View Images</button></div></div></div>
                                             <?php $x = $x+1; ?>
-                                            <div class="modal fade" tabindex="-1" id="modalDefault">
+                                            <div class="modal fade" tabindex="-1" id="modalDefault{{ $section->event_data['id'] }}">
                                                     <div class="modal-dialog modal-md" role="document">
                                                         <div class="modal-content">
                                                             <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
@@ -207,7 +208,7 @@
                                                                                 <div class="nk-block">
                                                                                     <div class="row g-gs">
                                                                                     @foreach($images as $image)
-                                                                                        <div class="col-sm-6 col-lg-6 col-xxl-3 {{ $image ?? '' }}">
+                                                                                        <div class="col-sm-6 col-lg-6 col-xxl-3 {{ $image ?? '' }}" id="{{ $image ?? '' }}">
                                                                                             <div class="gallery card card-bordered">
                                                                                                 <a class="gallery-image popup-image" href="./images/stock/a.jpg">
                                                                                                     <img class="w-100 rounded-top" src="{{asset('/image/'.$image)}}" alt="">
@@ -574,7 +575,8 @@ $('#editbutton').click(function(){
    
   </script>
   <script>
-    $('.deleteimage').click(function(e){
+    // $('.deleteimage').click(function(e){
+    $("body").delegate(".deleteimage","click",function(e){
         e.preventDefault();
         sectionid = $(this).attr('section-id');
         imagename = $(this).attr('imagename');
@@ -587,6 +589,8 @@ $('#editbutton').click(function(){
             NioApp.Toast(response, 'info', {position: 'top-right'});
             setTimeout(function() {
                     location.reload();
+                    // console.log(imagename);
+                    // $('#'+imagename).hide();
                 }, 1000);
             
         }

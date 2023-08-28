@@ -10,6 +10,7 @@ use App\Models\Events;
 use App\Models\Session;
 use App\Models\Section;
 use App\Models\Event_Meta;
+use App\Models\Registeruser;
 
 class EventController extends Controller
 {
@@ -23,6 +24,15 @@ class EventController extends Controller
         
         return view('Admin.Events.eventlist',compact('events'));
     }
+    public function registerlist($rsvp){
+        $event = Events::where('rsvp_code',$rsvp)->with('session')->first();
+        if(!$event){
+            abort(404);
+        }
+        $registerusers = Registeruser::where('event_id',$event->id)->with('event_dates')->get();
+        // dd($registerusers);
+        return view('Admin.Events.userlist',compact('registerusers'));
+    }
     public function edit($rsvp){
         $event = Events::where('rsvp_code',$rsvp)->with('session')->first();
         // dd($event);
@@ -32,7 +42,7 @@ class EventController extends Controller
         }
         $section = Section::where('event_id',$event->id)->with('event_data')->orderBy('section_number','asc')->get();
         $subsession = Session::where([['event_id',$event->id],['parent_session',$event->session['id']]])->get();
-        // dd($subsession);        
+          
         return view('Admin.Events.edit',compact('event','section','subsession'));
     }
     public function submitProc(Request $request){
@@ -41,8 +51,10 @@ class EventController extends Controller
         // print_r($request->all());
         // echo '</pre>';
         // die();
+        // if($request->)
+        // |unique:events,title
         $request->validate([
-            'title' => 'required|unique:events,title',
+            'title' => 'required',
             'subtitle' => 'required',
             'file' => 'required',
             'background_image' => 'required',
@@ -65,7 +77,7 @@ class EventController extends Controller
        
         $events = new Events;
         $events->title = $request->title;
-        $events->rsvp_code = str_replace(" ","-",substr_replace($request->title, $caps,0));
+        $events->rsvp_code = str_replace(" ","-",substr_replace($request->title, $caps,0)).rand(1,99);
         $events->sub_title = $request->subtitle;
         $events->logo = $name;
         $events->logo_path = '/image/'.$name;
@@ -338,6 +350,7 @@ class EventController extends Controller
         $event->update();
         if($request->session_type == 'single'){
             $single_session = Session::where('event_id',$request->id)->first();
+            Session::where([['event_id',$request->id],['parent_session',$single_session->id]])->delete();
             $single_session->start_date = $request->singlesession_start_date;
             $single_session->start_time = $request->singlesession_start_time;
             $single_session->place = $request->singlesession_place;
