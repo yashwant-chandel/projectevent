@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('mobile_number');
             $table->string('email');
+            $table->string('address');
             $table->string('event_date');
             $table->string('apt')->nullable();
             $table->string('guests')->nullable();

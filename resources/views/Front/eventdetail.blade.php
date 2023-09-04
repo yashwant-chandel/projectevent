@@ -31,11 +31,7 @@
     <link rel="stylesheet" href="{{ asset('front/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('front/css/responsive.css') }}" />
     <title>RSVP- home page</title>
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
+ 
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
   </head>
   <style>
@@ -109,6 +105,9 @@
             </div>
             <div class="col-lg-6 col-md-12">
               <div class="register-form">
+                  @if(Session::get('success'))
+                <p class="success-response"> {{ Session::get('success') }}</p>
+                  @endif 
                 <h2>Register for next events.</h2>
                 <form>
                   <div class="row">
@@ -181,6 +180,7 @@
                             </label>
                             <input type="radio" class="d-none" name="event_date" id="multievent{{ $events->session['id'] ?? '' }}" value="{{ $events->session['id'] ?? '' }}">
                             @else
+                            @if($multiple_session)
                             @foreach($multiple_session as $ms)
                             <?php 
                             $multidate = date('d M, Y',strtotime($ms['start_date'])); 
@@ -194,6 +194,7 @@
                             </label>
                             <input type="radio" class="d-none" name="event_date" id="multievent{{ $ms->id ?? '' }}" value="{{ $ms->id ?? '' }}">
                             @endforeach
+                            @endif
                             @endif
                           </ul>               
                 </div>
@@ -372,7 +373,7 @@
                                 <i class="fa-regular fa-envelope"></i>
                               </div>
                               <div class="sup_link">
-                                  <a href="{{ $sec->event_data['contact_section_email'] ?? '' }}">{{ $sec->event_data['contact_section_email'] ?? '' }}</a>                               
+                                  <a href="mailto:{{ $sec->event_data['contact_section_email'] ?? '' }}">{{ $sec->event_data['contact_section_email'] ?? '' }}</a>                               
                               </div>
                           </li>
                           <li>
@@ -454,6 +455,8 @@
     });
   });
 </script>
+
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -465,7 +468,7 @@
     <script src="{{ asset('admin-theme/assets/js/bundle.js') }}"></script>
     <script src="{{ asset('admin-theme/assets/js/scripts.js') }}"></script>
     <script src="{{ asset('admin-theme/assets/js/example-toastr.js?ver=3.1.2') }}"></script>
-    @if(Session::get('error'))
+    <!-- @if(Session::get('error'))
 <script>
     toastr.clear();
     NioApp.Toast('{{ Session::get("error") }}', 'error', {position: 'top-right'});
@@ -473,10 +476,9 @@
 @endif
 @if(Session::get('success'))
 <script>
-  alert('{{ Session::get("success") }}');
     toastr.clear();
      NioApp.Toast('{{ Session::get("success") }}', 'info', {position: 'top-right'});
 </script>
-@endif   
+@endif    -->
   </body>
 </html>

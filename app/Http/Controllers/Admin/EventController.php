@@ -53,12 +53,19 @@ class EventController extends Controller
         // die();
         // if($request->)
         // |unique:events,title
+           
         $request->validate([
             'title' => 'required',
+            'rsvp_code' => 'required|unique:events,rsvp_code',
             'subtitle' => 'required',
             'file' => 'required',
             'background_image' => 'required',
+        ],[
+            'rsvp_code.unique' => 'This event code has already been taken',
         ]);
+        if($request->session_type == 'Please select'){
+            return redirect()->back()->with(['error'=>'Please select event type']);
+        }
         if($request->hasfile('file')){
             $file = $request->file('file');
             $name = time().rand(1,100).'.'.$file->extension();
@@ -77,7 +84,8 @@ class EventController extends Controller
        
         $events = new Events;
         $events->title = $request->title;
-        $events->rsvp_code = str_replace(" ","-",substr_replace($request->title, $caps,0)).rand(1,99);
+        // $events->rsvp_code = str_replace(" ","-",substr_replace($request->title, $caps,0)).rand(1,99);
+        $events->rsvp_code = $request->rsvp_code;
         $events->sub_title = $request->subtitle;
         $events->logo = $name;
         $events->logo_path = '/image/'.$name;
@@ -326,7 +334,13 @@ class EventController extends Controller
         return redirect()->back()->with('success','successfully saved events');
     }
     public function update(Request $request){
-     
+        $request->validate([
+            'title' => 'required',
+            'rsvp_code' => 'required|unique:events,rsvp_code,'.$request->id,
+            'subtitle' => 'required',
+        ],[
+            'rsvp_code.unique' => 'This event code has already been taken',
+        ]);
         $event = Events::find($request->id);
         $event->title = $request->title;
         // $event->slug = strtolower(str_replace(" ","-",$request->title));
@@ -381,7 +395,7 @@ class EventController extends Controller
             }
         }
     }
-        return redirect('/admin-dashboard/edit/'.$event->rsvp_code)->with('successfully updated event data');
+        return redirect('/admin-dashboard/edit/'.$event->rsvp_code)->with(['success'=>'successfully updated event data']);
 
     }
 

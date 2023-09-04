@@ -736,3 +736,8 @@
   .scroll-btn {
     margin-right: -70px;
   }
+  p.success-response {
+    text-align: center;
+    color: green;
+    font-size: x-large;
+}

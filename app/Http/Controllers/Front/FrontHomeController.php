@@ -57,9 +57,11 @@ class FrontHomeController extends Controller
         'apt' => 'required',
     ]);
     $fullname = array();
+    if($request->guest_first_name){
     for ($i=0; $i < count($request->guest_first_name); $i++) { 
         array_push($fullname,$request->guest_first_name[$i].' ' .$request->guest_last_name[$i]);
     }
+}
     $events = Events::find($request->event_id);
     $registeruser = new Registeruser();
     $registeruser->first_name = $request->first_name;
@@ -82,7 +84,7 @@ class FrontHomeController extends Controller
 
     $mail = Mail::to($request->email)->send(new userregistermail($mailData));
 
-    return redirect()->back()->with(['success'=>'user registered successfully']);
+    return redirect()->back()->with(['success'=>'You are successfully register for this event']);
     
 }
 }

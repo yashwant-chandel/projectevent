@@ -55,3 +55,21 @@ ul.file-list li{
 .upload_icon i {
     font-size: 27px;
 }
+.card.card-bordered.card-preview.p-4.editor-section {
+  background-color: azure;
+}
+.card.card-bordered.card-preview.p-4.right-image-section {
+  background-color: honeydew;
+}
+.card.card-bordered.card-preview.p-4.left-image-section {
+  background-color: unset;
+}
+.card.card-bordered.card-preview.p-4.gallery-section {
+  background-color: whitesmoke;
+}
+.card.card-bordered.card-preview.p-4.contact-section {
+  background-color: #0000ff05;
+}
+.card.card-bordered.card-preview.p-4.footer-section {
+  background-color: #ffebcd29;
+}

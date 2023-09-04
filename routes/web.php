@@ -31,13 +31,13 @@ Route::get('/logout',[AuthenticationController::class,'logout']);
 
 //admin
 Route::group(['middleware' =>['admin']],function(){
-Route::get('/admin-dashboard',[AdminDashController::class,'index']);
+Route::get('/admin-dashboard',[AdminDashController::class,'index'])->name('admin-dashboard');
 //events
-Route::get('/admin-dashboard/events',[EventController::class,'index']);
+Route::get('/admin-dashboard/events',[EventController::class,'index'])->name('add-event');
 Route::post('/admin-dashboard/events/save',[EventController::class,'submitProc']);
 Route::post('/admin-dashboard/events/update',[EventController::class,'update']);
 
-Route::get('/admin-dashboard/event-list',[EventController::class,'eventlist']);
+Route::get('/admin-dashboard/event-list',[EventController::class,'eventlist'])->name('event-list');
 Route::get('/admin-dashboard/edit/{slug}',[EventController::class,'edit']);
 Route::get('/admin-dashboard/view/{slug}',[EventController::class,'registerlist']);
 Route::get('/admin-dashboard/event/delete/{id}',[EventController::class,'delete']);

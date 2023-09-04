@@ -1,5 +1,6 @@
 @extends('admin_layout/index')
 @section('content')
+
 <table class="table">
     <thead class="thead-dark">
       <tr>
