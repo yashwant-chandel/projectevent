@@ -36,6 +36,7 @@ Route::get('/admin-dashboard',[AdminDashController::class,'index'])->name('admin
 Route::get('/admin-dashboard/events',[EventController::class,'index'])->name('add-event');
 Route::post('/admin-dashboard/events/save',[EventController::class,'submitProc']);
 Route::post('/admin-dashboard/events/update',[EventController::class,'update']);
+Route::post('/admin-dashboard/events/sectionupdate',[EventController::class,'section_update']);
 
 Route::get('/admin-dashboard/event-list',[EventController::class,'eventlist'])->name('event-list');
 Route::get('/admin-dashboard/edit/{slug}',[EventController::class,'edit'])->name('event-edit');

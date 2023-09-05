@@ -360,8 +360,15 @@ class EventController extends Controller
             $file1->move(public_path().'/image/', $background_image_name);
             $event->background_image = '/image/'.$background_image_name;
         }
-        $event->session_type = $request->session_type;
+        // $event->session_type = $request->session_type;
         $event->update();
+      
+        return redirect('/admin-dashboard/edit/'.$event->rsvp_code)->with(['success'=>'successfully updated event data']);
+
+    }
+    public function section_update(Request $request){
+        $event = Events::find($request->id);
+
         if($request->session_type == 'single'){
             $single_session = Session::where('event_id',$request->id)->first();
             Session::where([['event_id',$request->id],['parent_session',$single_session->id]])->delete();
@@ -395,8 +402,7 @@ class EventController extends Controller
             }
         }
     }
-        return redirect('/admin-dashboard/edit/'.$event->rsvp_code)->with(['success'=>'successfully updated event data']);
-
+return redirect()->back()->with(['success'=>'successfully updated session']);
     }
 
 

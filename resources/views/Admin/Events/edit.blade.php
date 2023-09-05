@@ -73,10 +73,17 @@
                                                
                                             </div>
                                             </div>
+                                            <div class="col-2 mt-3">
+                                            <button class="btn btn-primary">Update</button>
+                                            </div>
                                         </div>
                                     </div>
+</form>
                                 <!-- .card-preview -->
                                 <!-- <div id="multiple-session mx-4"> -->
+                                <form action="{{ url('/admin-dashboard/events/sectionupdate') }}" method="post" class="eventform pb-5" id="eventform" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $event->id ?? '' }}">
                                     <div class="nk-block nk-block-lg">
                                             <div class="card card-bordered card-preview p-4">
                                                 <div class="row">

@@ -30,6 +30,7 @@ class FrontHomeController extends Controller
         $multiple_session = null;
     }
     $section = Section::where('event_id',$events->id)->with('event_data')->orderBy('section_number','asc')->get();
+    // dd($section);
     return view('Front.eventdetail',compact('events','section','multiple_session'));
    }
    public function codecheck(Request $request){
