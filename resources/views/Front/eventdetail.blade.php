@@ -173,12 +173,12 @@
                           $event_time = date('H:i A',strtotime($events->session['start_time']));
                           ?>
                           <label for="multievent{{ $events->session['id'] ?? '' }}">
-                            <li class="list-group-item">
+                            <li class="list-group-item sessionblock{{ $events->session['id'] ?? '' }}">
                                 <p><?php print_r($date);  ?></p>
                                 <i class="fa-regular fa-clock"></i><span><?php print_r($event_time); ?></span> 
                             </li>
                             </label>
-                            <input type="radio" class="d-none" name="event_date" id="multievent{{ $events->session['id'] ?? '' }}" value="{{ $events->session['id'] ?? '' }}">
+                            <input type="radio" class="d-none session_date" name="event_date" id="multievent{{ $events->session['id'] ?? '' }}" value="{{ $events->session['id'] ?? '' }}">
                             @else
                             @if($multiple_session)
                             @foreach($multiple_session as $ms)
@@ -187,12 +187,12 @@
                             $multievent_time = date('H:i A',strtotime($ms['start_time']));
                             ?>
                           <label for="multievent{{ $ms->id ?? '' }}">
-                            <li class="list-group-item">
+                            <li class="list-group-item sessionblock{{ $ms->id ?? '' }}">
                                 <p><?php echo $multidate; ?></p>
                                 <i class="fa-regular fa-clock"></i><span><?php echo $multievent_time; ?></span> 
                             </li>
                             </label>
-                            <input type="radio" class="d-none" name="event_date" id="multievent{{ $ms->id ?? '' }}" value="{{ $ms->id ?? '' }}">
+                            <input type="radio" class="d-none session_date" name="event_date" id="multievent{{ $ms->id ?? '' }}" value="{{ $ms->id ?? '' }}">
                             @endforeach
                             @endif
                             @endif
@@ -249,6 +249,15 @@
         <div class="container">
             <div class="about-content">
                 <div class="row">
+                  <div class="col-md-6">
+                      <div class="about-heading">
+                        <h2>About Us</h2>
+                        <h6>Citizen Advisory Group</h6>
+                          <div class="about-block">
+                          <?php print_r($sec->event_data['right_image_with_left_text_description']); ?>
+                          </div>
+                      </div>
+                    </div>
                     <div class="col-md-6 profile-block">
                         <div class="card">
                           <img src="{{ url('image/'.$sec->event_data['right_image_with_left_text_image']) }}" alt="" class="img-fluid">
@@ -257,19 +266,11 @@
                               
                              <?php print_r($sec->event_data['right_image_with_left_text_caption']); ?>
                              
-                          </div>
+                            </div>
                           </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                      <div class="about-heading">
-                        <h2>About Us</h2>
-                        <h6>Citizen Advisory Group</h6>
-                        <div class="about-block">
-                        <?php print_r($sec->event_data['right_image_with_left_text_description']); ?>
-                      </div>
-                    </div>
-                </div>
+                    
             </div>
         </div>
     </section>
@@ -278,16 +279,6 @@
         <div class="container">
             <div class="about-content">
                 <div class="row">
-                    
-                    <div class="col-md-6">
-                      <div class="about-heading">
-                        <h2>About Us</h2>
-                        <h6>Citizen Advisory Group</h6>
-                        <div class="about-block">
-                        <?php print_r($sec->event_data['left_image_with_right_text_description']); ?>  
-                        </div>
-                      </div>
-                    </div>
                     <div class="col-md-6 profile-block">
                         <div class="card">
                           <img src="{{ url('image/'.$sec->event_data['left_image_with_right_text_image']) }}" alt="" class="img-fluid">
@@ -298,6 +289,16 @@
                           </div>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                      <div class="about-heading">
+                        <h2>About Us</h2>
+                        <h6>Citizen Advisory Group</h6>
+                        <div class="about-block">
+                        <?php print_r($sec->event_data['left_image_with_right_text_description']); ?>  
+                        </div>
+                      </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -454,6 +455,13 @@
      $('.guest').append(html);
     });
   });
+</script>
+<script>
+  $('.session_date').change(function(){
+    id = $(this).val();
+    $('.list-group-item').removeClass('active-list');
+    $('.sessionblock'+id).addClass('active-list');
+  })
 </script>
 
 

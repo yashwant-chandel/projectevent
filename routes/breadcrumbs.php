@@ -21,7 +21,7 @@ Breadcrumbs::for('event-list', function (BreadcrumbTrail $trail) {
 });
 Breadcrumbs::for('edit', function (BreadcrumbTrail $trail ,$slug) {
     $trail->parent('event-list');
-    $trail->push($slug, route('event-list',['slug'=>$slug]));
+    $trail->push($slug, route('event-edit',['slug'=>$slug]));
 });
 
 

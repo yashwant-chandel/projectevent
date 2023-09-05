@@ -31,11 +31,11 @@
   });
   
   // event list
-  $(document).ready(function () {
-    $(" .event_time-block .list-group-item ").on("click", function () {
-      $(this).addClass("active-list").siblings().removeClass("active-list");
-    });
-  });
+  // $(document).ready(function () {
+  //   $(" .event_time-block .list-group-item ").on("click", function () {
+  //     $(this).addClass("active-list").siblings().removeClass("active-list");
+  //   });
+  // });
   
   // add note or guest
   

@@ -244,7 +244,7 @@ $(document).ready(function(){
         url = document.getElementById('image-cropper').crop.getCroppedImage().src;
         $('#image-cropper').parent().hide();
         $('.image-viewer').parent().removeClass('d-none');
-        $('.image-viewer').html('<img src="'+url+'" height="200px" width="200px">');
+        $('.image-viewer').html('<img src="'+url+'" >');
 
     //    console.log(url);
         var base64Image = url;
@@ -355,7 +355,7 @@ $('#editbutton').click(function(){
             selectval = $('#section_select').val();
             if(selectval == 'text_editor'){
                 // $('#section_select').children('option[value="text_editor"]').attr('disabled','');
-              $('.section_div').append('<div>'+text_editor+'<input type="hidden" name="sections[]" value="text_editor"></div>');
+              $('.section_div').append('<div class="mt-3">'+text_editor+'<input type="hidden" name="sections[]" value="text_editor"></div>');
             }else if(selectval == 'right_img_section'){
                 // $('#section_select').children('option[value="right_img_section"]').attr('disabled','');
                 $('.section_div').append('<div>'+right_img_section+'<input type="hidden" name="sections[]" value="right_image_section"></div>');

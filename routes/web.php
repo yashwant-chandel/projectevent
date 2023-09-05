@@ -38,7 +38,7 @@ Route::post('/admin-dashboard/events/save',[EventController::class,'submitProc']
 Route::post('/admin-dashboard/events/update',[EventController::class,'update']);
 
 Route::get('/admin-dashboard/event-list',[EventController::class,'eventlist'])->name('event-list');
-Route::get('/admin-dashboard/edit/{slug}',[EventController::class,'edit']);
+Route::get('/admin-dashboard/edit/{slug}',[EventController::class,'edit'])->name('event-edit');
 Route::get('/admin-dashboard/view/{slug}',[EventController::class,'registerlist']);
 Route::get('/admin-dashboard/event/delete/{id}',[EventController::class,'delete']);
 

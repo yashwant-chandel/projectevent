@@ -16,7 +16,10 @@
 <input type="hidden" name ="id" value="{{ $event->id ?? '' }}">
 <?php $section_number = count($section)+1; ?>
                                 <div class="nk-block nk-block-lg">
-                                <h4>Add Event</h4>
+                                    <div class="d-flex justify-content-between">
+                                        <h4>Add Event</h4>
+                                        {{ Breadcrumbs::render('edit',$rsvp) }}
+                                    </div>
                                         <div class="card card-bordered card-preview p-4">
                                       
                                             <div class="row gy-4">

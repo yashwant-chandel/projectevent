@@ -43,7 +43,7 @@ class EventController extends Controller
         $section = Section::where('event_id',$event->id)->with('event_data')->orderBy('section_number','asc')->get();
         $subsession = Session::where([['event_id',$event->id],['parent_session',$event->session['id']]])->get();
           
-        return view('Admin.Events.edit',compact('event','section','subsession'));
+        return view('Admin.Events.edit',compact('event','section','subsession','rsvp'));
     }
     public function submitProc(Request $request){
       
