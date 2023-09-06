@@ -132,7 +132,7 @@
                                                             <div class="row p-2" id="session_outer_div">
                                                                 <?php $num = 1; ?>
                                                                 @foreach($subsession as $session)
-                                                                    <h4>Session {{ $num++ }}</h4><div class="col-lg-6 p-1"><div class="form-group"><label class="form-label" for="default-02">Start date</label><div class="form-control-wrap"><input type="date" name="session_start_sub_date[]" id="session_start_date" class="form-control" value="{{ $session->start_date ?? '' }}"></div></div><div class="form-group"><label class="form-label" for="default-02">Start time</label><div class="form-control-wrap"><input type="time" name="session_start_sub_time[]" id="session_start_time" class="form-control" value="{{ $session['start_time'] ?? '' }}"></div></div></div><div class="col-lg-6"><div class="form-group"><label class="form-label" for="default-02">Place</label><div class="form-control-wrap"><input type="text" name="session_sub_place[]" id="session_place" class="form-control" value="{{ $session['place'] }}"></div></div></div><hr class="mt-1">
+                                                                    <div class="d-flex justify-content-between"><h4>Session {{ $num++ }}</h4><span class="remove_session" session-id="{{ url('/admin-dashboard/events/sessiondelete/'.$session->id) }}"><i class="fas fa-times"></i></span></div><div class="col-lg-6 p-1"><input type="hidden" name="session_id[]" value="{{ $session->id ?? '' }}"><div class="form-group"><label class="form-label" for="default-02">Start date</label><div class="form-control-wrap"><input type="date" name="session_start_sub_date[]" id="session_start_date" class="form-control" value="{{ $session->start_date ?? '' }}"></div></div><div class="form-group"><label class="form-label" for="default-02">Start time</label><div class="form-control-wrap"><input type="time" name="session_start_sub_time[]" id="session_start_time" class="form-control" value="{{ $session['start_time'] ?? '' }}"></div></div></div><div class="col-lg-6"><div class="form-group"><label class="form-label" for="default-02">Place</label><div class="form-control-wrap"><input type="text" name="session_sub_place[]" id="session_place" class="form-control" value="{{ $session['place'] }}"></div></div></div><hr class="mt-1">
                                                                 @endforeach
                                                             </div>
                                                             <div class="session_div row mt-4">
@@ -248,7 +248,7 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                        @endforeach
+                                                                                    @endforeach
                                                                                     </div>
                                                                                 </div><!-- .nk-block -->
                                                                             </div>
@@ -416,7 +416,7 @@ $('#editbutton').click(function(){
     $('#addsession').click(function(e){
         e.preventDefault();
         i++;
-        html = '<h4>Session '+ i +'</h4> <div class="col-lg-6 p-1" id="session'+i+'"><div class="form-group"><label class="form-label" for="default-02">Start date</label><div class="form-control-wrap"><input type="date" name="session_start_sub_date[]" id="session_start_date" class="form-control"></div></div><div class="form-group"><label class="form-label" for="default-02">Start time</label><div class="form-control-wrap"><input type="time" name="session_start_sub_time[]" id="session_start_time" class="form-control"></div></div></div><div class="col-lg-6"><div class="form-group"><label class="form-label" for="default-02">Place</label><div class="form-control-wrap"><input type="text" name="session_sub_place[]" id="session_place" class="form-control"></div></div></div><hr class="mt-1">';
+        html = '<h4>Session '+ i +'</h4> <div class="col-lg-6 p-1" id="session'+i+'"><input type="hidden" name="session_id[]"><div class="form-group"><label class="form-label" for="default-02">Start date</label><div class="form-control-wrap"><input type="date" name="session_start_sub_date[]" id="session_start_date" class="form-control"></div></div><div class="form-group"><label class="form-label" for="default-02">Start time</label><div class="form-control-wrap"><input type="time" name="session_start_sub_time[]" id="session_start_time" class="form-control"></div></div></div><div class="col-lg-6"><div class="form-group"><label class="form-label" for="default-02">Place</label><div class="form-control-wrap"><input type="text" name="session_sub_place[]" id="session_place" class="form-control"></div></div></div><hr class="mt-1">';
         // console.log(html);
         $('#session_outer_div').append(html);
 
@@ -426,21 +426,28 @@ $('#editbutton').click(function(){
             scrollTop: targetPosition
         }, 0);
     })
+
+    //removesession
+    $("body").delegate('.remove_session','click',function(){
+        link = $(this).attr('session-id');
+        window.location.href = link;
+    });
 </script>   
 <script>
     $(document).ready(function(){
         // $('#multiple_session_div').hide();
         // $('.session_div').hide();
         $("body").delegate("#select-events", "change", function (e) {
-           console.log($(this).val());
+        //    console.log($(this).val());
             if($(this).val() === 'multiple'){
                 
-                $('#session_close_date').val('');
+                // $('#session_close_date').val('');
+                $('#session_outer_div').show();
                     $('.session_div').hide();
-                    $('#addsession').parent().removeClass('d-none')
+                    $('#addsession').parent().removeClass('d-none');
                     $('#multiple_session_div').show();
             }else{
-                $('#session_outer_div').html('');
+                $('#session_outer_div').hide();
                     $('.session_div').show();
                     $('#addsession').parent().addClass('d-none')
                     $('#multiple_session_div').hide();
@@ -641,8 +648,6 @@ $('#editbutton').click(function(){
             NioApp.Toast(response, 'info', {position: 'top-right'});
             setTimeout(function() {
                     location.reload();
-                    // console.log(imagename);
-                    // $('#'+imagename).hide();
                 }, 1000);
             
         }
@@ -669,6 +674,8 @@ $(document).ready(function(){
 });
 });
   </script>
+
+
     <script>
      function convertToSlug(str){
         console.log(str);

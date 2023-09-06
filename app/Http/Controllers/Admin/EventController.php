@@ -327,10 +327,7 @@ class EventController extends Controller
                 }
 
             }
-
         }
-        
-        
         return redirect()->back()->with('success','successfully saved events');
     }
     public function update(Request $request){
@@ -384,14 +381,19 @@ class EventController extends Controller
             $multi_session = Session::where([['event_id',$request->id],['parent_session',null]])->first();
             $multi_session->start_date = $request->multisession_start_date;
             $multi_session->close_date = $request->multisession_close_date;
+            $multi_session->place = null;
+            $multi_session->start_time = null;
             $multi_session->note = $request->multisesion_note;
             $multi_session->event_id = $event->id;
             $multi_session->update();
-            Session::where([['event_id',$request->id],['parent_session',$multi_session->id]])->delete();
+            $subsession = Session::where([['event_id',$request->id],['parent_session',$multi_session->id]])->get();
             if($request->session_start_sub_date){
             for ($i=0; $i < count($request->session_start_sub_date); $i++) {
                 if($request->session_start_sub_date[$i] != null && $request->session_start_sub_date[$i] != null){
-                    $multi_sub_session = new Session;
+                    $multi_sub_session = Session::find($request->session_id[$i]);
+                    if(empty($multi_sub_session)){
+                        $multi_sub_session = new Session;
+                    }
                     $multi_sub_session->start_date = $request->session_start_sub_date[$i];
                     $multi_sub_session->start_time = $request->session_start_sub_time[$i];
                     $multi_sub_session->place = $request->session_sub_place[$i];
@@ -402,9 +404,18 @@ class EventController extends Controller
             }
         }
     }
-return redirect()->back()->with(['success'=>'successfully updated session']);
+        return redirect()->back()->with(['success'=>'successfully updated session']);
     }
 
+    public function deletesession($id){
+        $session = Session::find($id);
+        if($session){
+            $session->delete();
+            return redirect()->back()->with(['success'=>'successfully deleted session']);
+        }else{
+            return redirect()->back()->with(['error'=>'something went wrong']);
+        }
+    }
 
     public function delete($id){
 

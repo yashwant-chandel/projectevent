@@ -33,6 +33,8 @@ class FrontHomeController extends Controller
     // dd($section);
     return view('Front.eventdetail',compact('events','section','multiple_session'));
    }
+
+   
    public function codecheck(Request $request){
     $events = Events::where('rsvp_code',$request->code)->first();
     if($events){
@@ -76,10 +78,14 @@ class FrontHomeController extends Controller
     $registeruser->note = $request->note;
     $registeruser->event_id = $request->event_id;
     $registeruser->save();
+
+    $session_data = Session::find($request->event_date);
+
     $mailData = [
         'fullname' => $request->first_name.' '.$request->last_name,
         'email' => $request->email,
         'event_data' => $events,
+        'session_data' => $session_data,
 
     ];
 
