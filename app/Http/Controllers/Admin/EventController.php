@@ -284,51 +284,51 @@ class EventController extends Controller
                
                 }elseif($data == 'contact_section'){
                     try{
-                    $section4 = new Section;
-                    $section4->title = $request->contact_section_title[$contact_count];
-                    $section4->slug = str_replace(" ","-",$request->contact_section_title[$contact_count]);
-                    $section4->section_name = 'contact-section';
-                    $section4->section_number = $count;
-                    $section4->event_id = $events->id;
-                    $section4->save();
+                        $section4 = new Section;
+                        $section4->title = $request->contact_section_title[$contact_count];
+                        $section4->slug = str_replace(" ","-",$request->contact_section_title[$contact_count]);
+                        $section4->section_name = 'contact-section';
+                        $section4->section_number = $count;
+                        $section4->event_id = $events->id;
+                        $section4->save();
 
-                    $contact_section = new Event_Meta;
-                    $contact_section->contact_section_address = $request->address[$contact_count];
-                    $contact_section->contact_section_contact	 = $request->phone[$contact_count];
-                    $contact_section->contact_section_email = $request->email[$contact_count];
-                    $contact_section->contact_section_site_address = $request->site_address[$contact_count];
-                    $contact_section->map_status = $request['map'.$contact_count];
-                    $contact_section->event_id = $events->id;
-                    $contact_section->section_id = $section4->id;
-                    $contact_section->save();
-                    $contact_count = $contact_count+1;
-                } catch (\Throwable $th) {
-                   
-                }
+                        $contact_section = new Event_Meta;
+                        $contact_section->contact_section_address = $request->address[$contact_count];
+                        $contact_section->contact_section_contact	 = $request->phone[$contact_count];
+                        $contact_section->contact_section_email = $request->email[$contact_count];
+                        $contact_section->contact_section_site_address = $request->site_address[$contact_count];
+                        $contact_section->map_status = $request['map'.$contact_count];
+                        $contact_section->event_id = $events->id;
+                        $contact_section->section_id = $section4->id;
+                        $contact_section->save();
+                        $contact_count = $contact_count+1;
+                    } catch (\Throwable $th) {
+                    
+                    }
                 }elseif($data == 'footer_section'){
                     try{
-                    $section5 = new Section;
-                    $section5->title = $request->footer_section_title[$footer_count];
-                    $section5->slug = str_replace(" ","-",$request->footer_section_title[$footer_count]);
-                    $section5->section_name = 'disclaimer_text';
-                    $section5->section_number = $count;
-                    $section5->event_id = $events->id;
-                    $section5->save();
+                        $section5 = new Section;
+                        $section5->title = $request->footer_section_title[$footer_count];
+                        $section5->slug = str_replace(" ","-",$request->footer_section_title[$footer_count]);
+                        $section5->section_name = 'disclaimer_text';
+                        $section5->section_number = $count;
+                        $section5->event_id = $events->id;
+                        $section5->save();
 
-                    $footer_section = new Event_Meta;
-                    $footer_section->footer_disclaimer = $request->disclaimer_text[$footer_count];
-                    $footer_section->event_id = $events->id;
-                    $footer_section->section_id = $section5->id;
-                    $footer_section->save();
-                    $footer_count = $footer_count+1;
-                } catch (\Throwable $th) {
-                   
-                }
+                        $footer_section = new Event_Meta;
+                        $footer_section->footer_disclaimer = $request->disclaimer_text[$footer_count];
+                        $footer_section->event_id = $events->id;
+                        $footer_section->section_id = $section5->id;
+                        $footer_section->save();
+                        $footer_count = $footer_count+1;
+                    } catch (\Throwable $th) {
+                    
+                    }
                 }
 
             }
         }
-        return redirect()->back()->with('success','successfully saved events');
+        return redirect('/admin-dashboard/edit/'.$events->rsvp_code)->with('success','successfully saved events');
     }
     public function update(Request $request){
         $request->validate([

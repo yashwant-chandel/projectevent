@@ -416,7 +416,7 @@ $('#editbutton').click(function(){
     $('#addsession').click(function(e){
         e.preventDefault();
         i++;
-        html = '<h4>Session '+ i +'</h4> <div class="col-lg-6 p-1" id="session'+i+'"><input type="hidden" name="session_id[]"><div class="form-group"><label class="form-label" for="default-02">Start date</label><div class="form-control-wrap"><input type="date" name="session_start_sub_date[]" id="session_start_date" class="form-control"></div></div><div class="form-group"><label class="form-label" for="default-02">Start time</label><div class="form-control-wrap"><input type="time" name="session_start_sub_time[]" id="session_start_time" class="form-control"></div></div></div><div class="col-lg-6"><div class="form-group"><label class="form-label" for="default-02">Place</label><div class="form-control-wrap"><input type="text" name="session_sub_place[]" id="session_place" class="form-control"></div></div></div><hr class="mt-1">';
+        html = '<h4>Session '+ i +'</h4><div class="col-lg-6 p-1" id="session'+i+'"><input type="hidden" name="session_id[]"><div class="form-group"><label class="form-label" for="default-02">Start date</label><div class="form-control-wrap"><input type="date" name="session_start_sub_date[]" id="session_start_date" class="form-control"></div></div><div class="form-group"><label class="form-label" for="default-02">Start time</label><div class="form-control-wrap"><input type="time" name="session_start_sub_time[]" id="session_start_time" class="form-control"></div></div></div><div class="col-lg-6"><div class="form-group"><label class="form-label" for="default-02">Place</label><div class="form-control-wrap"><input type="text" name="session_sub_place[]" id="session_place" class="form-control"></div></div></div><hr class="mt-1"></div>';
         // console.log(html);
         $('#session_outer_div').append(html);
 
@@ -432,6 +432,11 @@ $('#editbutton').click(function(){
         link = $(this).attr('session-id');
         window.location.href = link;
     });
+    // $("body").delegate('.removesession','click',function(){
+    //     // console.log('done');
+        
+
+    // });
 </script>   
 <script>
     $(document).ready(function(){

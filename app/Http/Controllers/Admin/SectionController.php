@@ -101,16 +101,15 @@ class SectionController extends Controller
             
         }elseif($request->section_type == 'contact-section'){
             if($request->id){
-            $contact_section = $this->contact($request->id,$request->address,$request->phone,$request->email,$request->site_address,$request->map);
+                $contact_section = $this->contact($request->id,$request->address,$request->phone,$request->email,$request->site_address,$request->map);
             }else{
-            $contact_section_add = $this->contact_add($section->id,$request->address,$request->phone,$request->email,$request->site_address,$request->event_id,$request->map); 
+                $contact_section_add = $this->contact_add($section->id,$request->address,$request->phone,$request->email,$request->site_address,$request->event_id,$request->map); 
             }
         }elseif($request->section_type == 'disclaimer_text'){
             if($request->id){
-            $footer_section = $this->footer($request->id,$request->disclaimer_text);
+                $footer_section = $this->footer($request->id,$request->disclaimer_text);
             }else{
-            $footer_section = $this->footer_add($section->id,$request->disclaimer_text,$request->event_id);
-
+                $footer_section = $this->footer_add($section->id,$request->disclaimer_text,$request->event_id);
             }
         }
         return response()->json(['success'=>'successfully update section']);

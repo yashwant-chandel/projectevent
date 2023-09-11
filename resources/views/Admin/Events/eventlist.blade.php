@@ -59,7 +59,7 @@
                                                                 <span class="amount">{{ $ev->session_type ?? '' }}</span>
                                                             </div>
                                                             <div class="tb-tnx-status">
-                                                                <span class="amount">{{ $ev->session['start_time'] ?? '' }}</span>
+                                                                <span class="amount">{{ $ev->session['start_time'] ?? '-' }}</span>
                                                             </div>
                                                         </td>
                                                         <td class="tb-tnx-action">
