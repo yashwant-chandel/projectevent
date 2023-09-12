@@ -93,8 +93,8 @@
                                                                     <div class="form-control-wrap">
                                                                         <select class="form-select js-select2" name="session_type" id="select-events">
                                                                             <option value="Please select">Please Select</option>
-                                                                            <option value="single" @if($event->session_type == 'single') selected @endif>Single</option>
-                                                                            <option value="multiple" @if($event->session_type == 'multiple') selected @endif >Multiple</option>
+                                                                            <option value="single" @if($event->session_type == 'multiple') selected @endif>Single</option>
+                                                                            <option value="multiple" @if($event->session_type == 'multiple') selected @endif>Multiple</option>
                                                                         </select>
                                                                     </div>
                                                             </div>
@@ -627,7 +627,6 @@ $('#editbutton').click(function(){
          processData: false,
          success: function(response)
          {
-            
             NioApp.Toast(response.success, 'info', {position: 'top-right'});
             setTimeout(function() {
                     location.reload();

@@ -364,7 +364,12 @@ class EventController extends Controller
 
     }
     public function section_update(Request $request){
+        if($request->session_type == 'Please select'){
+            return redirect()->back()->with(['error'=>'Please select event type']);
+        }
         $event = Events::find($request->id);
+        $event->session_type = $request->session_type;
+        $event->update();
 
         if($request->session_type == 'single'){
             $single_session = Session::where('event_id',$request->id)->first();

@@ -86,7 +86,7 @@
                                                                         <select class="form-select js-select2" name="session_type" id="select-events">
                                                                             <option value="Please select">Please Select</option>
                                                                             <option value="single">Single</option>
-                                                                            <option value="mulitple">Multiple</option>
+                                                                            <option value="multiple">Multiple</option>
                                                                         </select>
                                                                     </div>
                                                             </div>
