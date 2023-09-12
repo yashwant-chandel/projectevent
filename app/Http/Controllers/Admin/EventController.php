@@ -31,7 +31,7 @@ class EventController extends Controller
         }
         $registerusers = Registeruser::where('event_id',$event->id)->with('event_dates')->get();
         // dd($registerusers);
-        return view('Admin.Events.userlist',compact('registerusers'));
+        return view('Admin.Events.userlist',compact('registerusers','event'));
     }
     public function edit($rsvp){
         $event = Events::where('rsvp_code',$rsvp)->with('session')->first();

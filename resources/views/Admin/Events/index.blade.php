@@ -9,11 +9,14 @@
 <link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
 <script src="https://cdn.jsdelivr.net/npm/@jsuites/cropper/cropper.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@jsuites/cropper/cropper.min.css" type="text/css" />
-{{ Breadcrumbs::render('add-event') }}
+
 <form action="{{ url('/admin-dashboard/events/save') }}" method="post" class="eventform" id="eventform" enctype="multipart/form-data">
                                                 @csrf
                                 <div class="nk-block nk-block-lg">
-                                <h4>Add Event</h4>
+                                    <div class="d-flex justify-content-between">
+                                        <h4>Add Event</h4>
+                                        {{ Breadcrumbs::render('add-event') }}
+                                    </div>
                                         <div class="card card-bordered card-preview p-4">
                                       
                                             <div class="row gy-4">

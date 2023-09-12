@@ -1,11 +1,11 @@
 @extends('admin_layout/index')
 @section('content')
-{{ Breadcrumbs::render('event-list') }}
+
 <div class="nk-block nk-block-lg">
                                         <div class="nk-block-head">
-                                            <div class="nk-block-head-content">
+                                            <div class="nk-block-head-content d-flex justify-content-between">
                                                 <h4 class="nk-block-title">Event List</h4>
-                                               
+                                                {{ Breadcrumbs::render('event-list') }}
                                             </div>
                                         </div>
                                         <div class="card card-bordered card-preview">

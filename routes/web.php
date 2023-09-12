@@ -41,7 +41,7 @@ Route::get('/admin-dashboard/events/sessiondelete/{id}',[EventController::class,
 
 Route::get('/admin-dashboard/event-list',[EventController::class,'eventlist'])->name('event-list');
 Route::get('/admin-dashboard/edit/{slug}',[EventController::class,'edit'])->name('event-edit');
-Route::get('/admin-dashboard/view/{slug}',[EventController::class,'registerlist']);
+Route::get('/admin-dashboard/view/{slug}',[EventController::class,'registerlist'])->name('register-list');
 Route::get('/admin-dashboard/event/delete/{id}',[EventController::class,'delete']);
 
 //accountsetting

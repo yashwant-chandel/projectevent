@@ -18,7 +18,7 @@
                                 <div class="nk-block nk-block-lg">
                                     <div class="d-flex justify-content-between">
                                         <h4>Add Event</h4>
-                                        {{ Breadcrumbs::render('edit',$rsvp) }}
+                                        <div>{{ Breadcrumbs::render('edit',$rsvp) }}</div>
                                     </div>
                                         <div class="card card-bordered card-preview p-4">
                                       
